@@ -1,0 +1,1 @@
+This file is used to copy to test folder using javascript.
