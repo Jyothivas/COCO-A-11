@@ -1,0 +1,14 @@
+function f(){
+  console.log("this is text1");
+}
+f();
+
+let fs =require("fs");
+let today=new Date();
+console.log(today);
+fs.copyFile("copy.txt","copy2.txt/today", function (error) {
+  if (error) {
+    console.log("Error",error);
+  }
+  console.log("file copy successfuly");
+});

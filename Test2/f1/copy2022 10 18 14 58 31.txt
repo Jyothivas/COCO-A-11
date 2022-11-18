@@ -1,0 +1,2 @@
+About Lesson
+React Native simply uses JavaScript for styling our core components. We don’t require any special language or syntax for defining styles. All the core components use a prop (property) named style. The style names and values are similar to CSS that works for the web. There is the only difference in the way of writing names using camel casing, e.g fontSize rather than font-size.
