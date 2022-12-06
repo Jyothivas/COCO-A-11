@@ -9,6 +9,7 @@
   <!-- Bootstrap CSS -->
 
   <link rel="stylesheet" href="form.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
@@ -43,19 +44,19 @@
 
             </div>
 
-            <div class="form-check" id="gender">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="Male" value="Male" checked>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="gender" value="Male" >
               <label class="form-check-label mr-5" for="exampleRadios1">
                 Male
               </label>
-              <input class="form-check-input" type="radio" name="exampleRadios" id="Female" value="Female">
+              <input class="form-check-input" type="radio" name="gender" id="gender" value="Female">
               <label class="form-check-label" for="exampleRadios2">
                 Female
               </label>
             </div>
 
             <div class="inputbox">
-              <button id="btnAdd" type="button" onclick="insRow()">Submit</button>
+              <button id="btnAdd" type="button" onclick="AddRow()">Submit</button>
             </div>
           </form>
         </div>
@@ -84,57 +85,23 @@
   </div>
 
   <script>
+    var data1=[];
+    var data2=[];
+    var data3=[];
+    var data4=[];
+    var data5=[];
     
   </script>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="form.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-    crossorigin="anonymous"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
   <script>
-    $(document).ready(function () {
-      var table = $('#example').on('draw.dt', function () {
-        $("#containerexample").attr("id", "container"); $("#loadercontainer").css("display", "none");
-      }).DataTable({
-        lengthChange: false,
-        "scrollX": true,
-        "paging": false,
-        "order": [[3, "desc"]]
-      });
+   $(document).ready( function () {
+    $('#example').DataTable();
 
-      table.buttons().container()
-        .appendTo('#example_wrapper .col-md-6:eq(0)');
-    });
-
-    var tbodyRef = document.getElementById('example')//.getElementsByTagName('tbody')[0];
-    var lastRow = tbodyRef.rows[tbodyRef.rows.length - 1];
-    $('#btnAdd').click(function () {
-      var num = $('.center').length;
-      var newNum = new Number(num + 1);
-
-      var newElem = $('#input' + num).clone().attr('id', 'input' + newNum);
-      newElem.children(':first').attr('id', 'name' + newNum).attr('name', 'name' + newNum);
-
-      $('#input' + num).after(newElem);
-
-    });
-
-    $('#btnAdd').click(function () {
-      var num = $('#input').val();
-      var email = $('#email').val();
-      var age = $('#age').val();
-      var gender = document.myForm.exampleRadios.value;
-      var action = 'edit';
-
-      data.srNum = num;
-      data.email = email;
-      data.age = age;
-      data.gender = gender;
-      data.action = action;
-
-      console.log(data);
-    });
+} );
   </script>
 
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
