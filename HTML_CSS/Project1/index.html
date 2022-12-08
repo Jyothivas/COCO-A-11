@@ -96,16 +96,12 @@
   <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
 
   <script>
-    var rows=[];
+    
     var employeeData = [  ]	
-  var dt=  $(document).ready(function() {
-      $('#btnAdd').on('click',function(){
-        var table = $('#example').on( 'draw.dt', function () {
-    $("#containerexample").attr("id", "container"); $("#loadercontainer").css("display","none");
-  } ).DataTable( {
+  var tableofEmployee=  $(document).ready(function() {
+    var tableRefresh= $('#example').DataTable( {
 	        lengthChange: false,
           data:employeeData,
-	        buttons: [ 'excel', 'pdf', 'colvis' ],
           'destroy': true,
           'paging': true,
           'lengthChange': true,
@@ -115,9 +111,9 @@
           'autoWidth': true 
 	    } );
 	  
-      });
+      });      
 	  
-	} );
+      
   
      </script>
        

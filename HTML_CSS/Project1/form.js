@@ -2,15 +2,28 @@
 
  
 function AddRow(){
+
     let srNum =employeeData.length+1;
     var Email = document.getElementById('email').value;
     var Age = document.getElementById('age').value;
     var Gender = document.querySelector('input[name="gender"]:checked').value;
-    var Action = "<button class='btn btn-success'>Edit</button> <button class='btn btn-danger' onclick='deleteEmployee(srNUM)'>Delete</button>";;
+    var Action = `<button class='btn btn-success'>Edit</button> <button class='btn btn-danger' onclick='${deleteEmployee(srNum)}'>Delete</button>`
+
     
-        rows=[srNum,Email,Age,Gender,Action]
-    
-        employeeData.push(rows);
+    employeeData.push([srNum,Email,Age,Gender,Action]);
+
+    $('#example').on('draw.dt', function(){
+    }).DataTable({
+        data:employeeData,
+      'destroy': true,
+      'paging': true,
+      'lengthChange': true,
+      'searching': true,
+      'ordering': true,
+      'info': true,
+      'autoWidth': true 
+    })
+
 } 
 
 
@@ -41,10 +54,28 @@ function AddRow(){
 
 
 
-/*  function deleteEmployee(empId){
+ function deleteEmployee(empId){
 
     console.log(empId);
-    console.log(employeeData);
-    employeeData=employeeData.filter(employeeData[empId]);
+       
+    for( var i = 0; i < employeeData.length; i++){ 
+    
+        if ( employeeData[i] === empId) { 
+    
+            employeeData.splice(i, 1); 
+        }
+    
+    }
     console.log(employeeData)
-}  */
+    $('#example').on('draw.dt', function(){
+    }).DataTable({
+        data:employeeData,
+      'destroy': true,
+      'paging': true,
+      'lengthChange': true,
+      'searching': true,
+      'ordering': true,
+      'info': true,
+      'autoWidth': true 
+    })
+} 
