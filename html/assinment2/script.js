@@ -10,7 +10,7 @@ var  sr = Employee.length+1;
   } else {
     gen = "Female";
   }
-  var Actions = `<button id='edit'>${"Edit"}</button><button id='delete' onclick="onClickDelete(this)">${"Delete"}</button>`;  
+  var Actions = `<button id='edit'>${"Edit"}</button><button id='delete' onclick="onClickDelete(${sr})">${"Delete"}</button>`;  
   Employee.push([sr, email, age, gen, Actions]);
 
     $('#example').on('draw.dt',function(){}).DataTable({
@@ -20,21 +20,25 @@ var  sr = Employee.length+1;
       'lengthChange':true
     });
 
+    textClear();
+
 }
   
-function onClickDelete(){
- 
-}
     
+var dup=[];
+function onClickDelete(e){
+ for(let i=0;i<Employee.length;i++)
+ {
+  if(Employee[i][0]!=e)
+  {
+    dup[i]=Employee[i];
+  }
+  Employee[i]=dup[i];
+ }
+ console.log(Employee);
+}
 
-// function onClickDelete(){
-//   console.log("clicked");
-//   var selectedRows = dt.rows(".selected");
-//   dt.rows(selectedRows).remove().draw();
-//   console.log("dt.data(): ");
-//   console.log(dt); 
-// }
-
-// $("#example tbody").on("click", function () {
-//   dt.row($(this).parents("tr")).remove().draw();
-// });
+function textClear(){
+  email = document.getElementById("inputEmail3").value=''
+  age = document.getElementById("age").value=''
+}
