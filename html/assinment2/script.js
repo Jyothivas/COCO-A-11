@@ -1,6 +1,10 @@
 
 
 function onclickSubmit() {
+ if ($.fn.DataTable.isDataTable("#example") && DataTable != "") {
+   $("#example").DataTable().destroy();
+ }
+ $("#example tbody").empty();
 var  sr = Employee.length+1;
   let email = document.getElementById("inputEmail3").value;
   let age = document.getElementById("age").value;
@@ -10,16 +14,23 @@ var  sr = Employee.length+1;
   } else {
     gen = "Female";
   }
-  var Actions = `<button id='edit'>${"Edit"}</button><button id='delete' onclick="onClickDelete(${sr})">${"Delete"}</button>`;  
+  var Actions = `<button id='edit' onclick="onClickEdit(${sr})">${"Edit"}</button><button id='delete' onclick="onClickDelete(${sr})">${"Delete"}</button>`;  
   Employee.push([sr, email, age, gen, Actions]);
-
+    
     $('#example').on('draw.dt',function(){}).DataTable({
       data:Employee,
-      'destroy':true,
-      'ordering':true,
-      'lengthChange':true
+      "destroy":true,
+      "autoWidth":false, 
+      "info":false, 
+      "JQueryUI":true, 
+      "ordering":true, 
+      "paging":false, 
+      "scrollY":"500px", 
+      "scrollCollapse":true
     });
 
+
+   
     textClear();
 
 }
@@ -36,9 +47,27 @@ function onClickDelete(e){
   Employee[i]=dup[i];
  }
  console.log(Employee);
+  $('#example').DataTable({
+      data:Employee,
+      
+      "autoWidth":false, 
+      "info":false, 
+      "JQueryUI":true, 
+      "ordering":true, 
+      "paging":false, 
+      "scrollY":"500px", 
+      "scrollCollapse":true
+});
 }
 
+function onClickEdit(i){
+ console.log(i);
+  document.getElementById("inputEmail3").value=i;
+  document.getElementById("age").value=i;
+}
+
+
 function textClear(){
-  email = document.getElementById("inputEmail3").value=''
-  age = document.getElementById("age").value=''
+  email = document.getElementById("inputEmail3").value='';
+  age = document.getElementById("age").value='';
 }

@@ -26,41 +26,51 @@
     <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css" />
   </head>
   <body>
-    <div>
+    <div class="container">
+      
       <div class="row no-gutters">
+        <div class="newE">
+          <h3>hotjar</h3>
+        </div>
         <div class="col-md-6 no-gutters">
           <div class="left">
             <form>
-              <div class="main">
-                <div class="newE">
-                  <h1 class="text-center">New Employee</h1>
-                </div>
+              
+                <div class="formh2"><h2>Get your free Hotjar<br> account now.</h2></div>
+                <div><p>Those who created the account were extremely irresponsible.There is no charge to create an account.</p></div>
                 <div class="form-group row">
                   <div class="col-lg-12 text-center para">
+                   
                     <div>
+                      <div class="text"><text>Email Id</text></div>
                       <input
                         type="email"
                         class="inputs"
                         id="inputEmail3"
-                        placeholder="Email"
+                        placeholder="Enter here"
+                        value=""
                       />
+                      <span class="underline"></span>
                     </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-lg-12 text-center para">
                     <div>
+                      <div class="text"><text>Age</text></div>
                       <input
                         type="Age"
-                        class="inputs"
+                        class="inputs "
                         id="age"
-                        placeholder="Age"
+                        placeholder="Enter here"
+                        value=""
+                        
                       />
                     </div>
                   </div>
                 </div>
                 <fieldset class="form-group">
-                  <div class="col">
+                  <div class="col text-center">
                     <div class="col-sm-10 col-lg-12">
                       <div class="form-check">
                         <input
@@ -101,16 +111,23 @@
                 <div class="form-group">
                   <div class="col text-center">
                     <button
-                      class="btn btn-danger"
+                      class="submitbtn"
                       type="button"
                       id="submit"
                       onclick="onclickSubmit()"
                     >
                       Submit
                     </button>
+                     <div><text>or</text></div>
+                     <div>
+                      <div><img src="./googale.png" style="height: 20px;width: 20px;"/><text>Sign up with Google</text></div>
+                     
+                    </div>
                   </div>
+                 
                 </div>
-              </div>
+                
+              
             </form>
           </div>
         </div>
@@ -118,7 +135,7 @@
           <div class="right">
             <div class="cart1 text-center">
               <div class="newE">
-                <h1 class="text-center">Employees</h1>
+                <h1 class="text-center textright">Employees</h1>
               </div>
               <div>
                 <table id="example" class="display">
@@ -131,9 +148,7 @@
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
-
-                  </tbody>
+                  <tbody></tbody>
                 </table>
               </div>
             </div>
@@ -146,20 +161,14 @@
 
     <script>
       var Employee = [];
-     var dt;
-    $(document).ready( function () {
-      dt=$('#example').DataTable({
-      data:Employee,
-      'destroy':true,
-      'ordering':true,
-      'lengthChange':true,
-    })
-} );
-     
-
-     
-
+      var refresh;
+      $(document).ready(function () {
+        refresh = $("#example").DataTable({
+          data: Employee,
+        });
+      });
       
+   
     </script>
     <script src="./script.js"></script>
     <script
