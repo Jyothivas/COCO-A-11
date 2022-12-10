@@ -29,12 +29,10 @@
           <h1>New Employee</h1>
 
           <form action="" method="" name="myForm" onsubmit="return(validation());">
-
-            <div id="error" class="error" hidden>
-              <p>Please choose a username.</p>
-            </div>
+            
+            <input type="text" name="sr_No" id="srNo" hidden>
             <div class="inputbox">
-              <input type="email" id="email" name="Email" placeholder="Email" required>
+              <input type="email" id="email" name="Email" value='' placeholder="Email" required>
             </div>
 
             <div id="error" hidden>
@@ -63,6 +61,7 @@
         </div>
 
       </div>
+      
       <div class="col-sm-12 col-lg-6">
         <div class="data p-5">
 
@@ -76,6 +75,18 @@
                 <th>Action</th>
               </tr>
             </thead>
+             <!--  <tbody id="employee-list">
+                <tr>
+                  <td>1</td>
+                  <td>karan</td>
+                  <td>22</td>
+                  <td>male</td>
+                  <td>
+                    <a href="#" class="btn btn-warning edit">Edit</a>
+                    <a href="#" class="btn btn-danger delete">Delete</a>
+                  </td>
+                </tr>
+              </tbody> -->
           </table>
         </div>
       </div>
@@ -96,10 +107,10 @@
   <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
 
   <script>
-    
+    var tableRefresh;
     var employeeData = [  ]	
   var tableofEmployee=  $(document).ready(function() {
-    var tableRefresh= $('#example').DataTable( {
+     tableRefresh= $('#example').DataTable( {
 	        lengthChange: false,
           data:employeeData,
           'destroy': true,
