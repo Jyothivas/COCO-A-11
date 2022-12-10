@@ -8,7 +8,7 @@ btn.addEventListener('click', function handleClick(event) {
   const emailInput = document.getElementById('email');
   const ageInput = document.getElementById('age');
 
-
+  
 
   // 👇️ clear input field
   hiddenInput.value = '';
@@ -24,6 +24,12 @@ function AddRow(){
     let Gender = document.querySelector('input[name="gender"]:checked').value;
     var Action = `<button class="btn btn-success" onclick='editEmployeeData(${srNo})'>Edit</button>
                   <button class="btn btn-danger" onclick='deleteEmployee(${srNo})'>Delete</button>`;
+
+            /*       if(Email==''){
+                    console.log('validation');
+                    document.getElementById('error').innerHTML='Please enter valid email';
+                    document.getElementById('error').style.borderColor='red';
+                } */
         
     //checking update details or new inserted..              
     if(!srNo==''){

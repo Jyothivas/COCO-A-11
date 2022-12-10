@@ -28,16 +28,14 @@
 
           <h1>New Employee</h1>
 
-          <form action="" method="" name="myForm" onsubmit="return(validation());">
+          <form action="" method="" name="myForm">
             
             <input type="text" name="sr_No" id="srNo" hidden>
             <div class="inputbox">
-              <input type="email" id="email" name="Email" value='' placeholder="Email" required>
+              <input type="email" id="email" name="Email" placeholder="Email" required>
+              <p id="error"></p>
             </div>
 
-            <div id="error" hidden>
-              <p>Please choose a username.</p>
-            </div>
             <div class="inputbox">
               <input id="age" type="text" name="Age" placeholder="Age">
 
