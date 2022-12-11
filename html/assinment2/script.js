@@ -35,21 +35,21 @@ var  sr = Employee.length+1;
 
 }
   
-    
-var dup=[];
 function onClickDelete(e){
- for(let i=0;i<Employee.length;i++)
- {
-  if(Employee[i][0]!=e)
-  {
-    dup[i]=Employee[i];
-  }
-  Employee[i]=dup[i];
- }
- console.log(Employee);
-  $('#example').DataTable({
+for(let i=0;i<Employee.length;i++)
+{
+  if(e==Employee[i][0])
+    {
+      Employee.splice(i,1);
+    }
+}
+for(i=0;i<=Employee.length;i++)
+{
+  Employee[i]=1;
+}
+$('#example').on('draw.dt',function(){}).DataTable({
       data:Employee,
-      
+      "destroy":true,
       "autoWidth":false, 
       "info":false, 
       "JQueryUI":true, 
@@ -57,13 +57,27 @@ function onClickDelete(e){
       "paging":false, 
       "scrollY":"500px", 
       "scrollCollapse":true
-});
+    });
+//Employee=f;
+//console.log(Employee);
+  // for (let i = 0; i < Employee.length; i++) {
+  //   if (Employee[i][0] != e) {
+  //     dup[i] = Employee[i];
+  //   }
+  //   Employee[i] = dup[i];
+  //   console.log(Employee);
+  // }
+  // for (let j = 0; j < Employee.length; j++) {
+  //  Employee[j][0] =j+1;
+  // }
+  
 }
 
-function onClickEdit(i){
- console.log(i);
-  document.getElementById("inputEmail3").value=i;
-  document.getElementById("age").value=i;
+function onClickEdit(p){
+ console.log(p);
+ 
+  document.getElementById("inputEmail3").value=Employee;
+  document.getElementById("age").value=Employee;
 }
 
 

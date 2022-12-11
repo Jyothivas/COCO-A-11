@@ -92,8 +92,7 @@ label{
 
 @media screen and(min-width:768px) {
 
-    .left,
-    .right {
+    body{
         height: 25vh;
        
     }
