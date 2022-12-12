@@ -36,6 +36,7 @@ var  sr = Employee.length+1;
 }
   
 function onClickDelete(e){
+  console.log(e);
 for(let i=0;i<Employee.length;i++)
 {
   if(e==Employee[i][0])
@@ -43,9 +44,9 @@ for(let i=0;i<Employee.length;i++)
       Employee.splice(i,1);
     }
 }
-for(i=0;i<=Employee.length;i++)
+for(let i=0;i<Employee.length;i++)
 {
-  Employee[i]=1;
+  Employee[i][0]=i+1;
 }
 $('#example').on('draw.dt',function(){}).DataTable({
       data:Employee,
@@ -75,9 +76,15 @@ $('#example').on('draw.dt',function(){}).DataTable({
 
 function onClickEdit(p){
  console.log(p);
- 
-  document.getElementById("inputEmail3").value=Employee;
-  document.getElementById("age").value=Employee;
+ for (let i = 0; i < Employee.length; i++) {
+   if (p == Employee[i][0]) {
+    document.getElementById("inputEmail3").value = Employee[i][1];
+    document.getElementById("age").value = Employee[i][2];
+   }
+   onclickSubmit(p);
+ }
+  
+  
 }
 
 
