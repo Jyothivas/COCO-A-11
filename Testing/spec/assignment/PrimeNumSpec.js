@@ -16,6 +16,5 @@ describe('Prime Number',function(){
         expect(primeNum.isPrime(83)).toEqual('Prime');
         expect(primeNum.isPrime(29)).toEqual('Prime');
 
-        
     });
 });
