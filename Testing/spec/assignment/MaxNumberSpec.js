@@ -1,7 +1,7 @@
 const MaxNumber=require('../../lib/jasmine_examples/assignment/MaxNumber');
-const PrimeNum=require('../../lib/jasmine_examples/assignment/PrimeNum');
 
 //test cases for max number...
+
 describe('Max Number', function(){
 
     it('find the maximum numbers',function(){
