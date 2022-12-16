@@ -1,7 +1,10 @@
 class CountWord{
-
+    
     strWord(str){
-       let temp = str.split(" ");
+        if(str==' '||str==''){
+            return 0;
+       }
+       let temp = str.trim().split(/\s+/);
         return temp.length;
     }
 }
