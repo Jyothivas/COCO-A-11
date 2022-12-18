@@ -14,9 +14,13 @@
 }
 .right{
     
-    margin-top: 40px;
+   
     background-color: rgb(199, 196, 196);
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    
+    
 }
 .main{
     height: 600px;
@@ -161,7 +165,7 @@ label{
 @media screen and(min-width:768px) {
 
     body{
-        height: 25vh;
+        height: 50vh;
        
     }
 }

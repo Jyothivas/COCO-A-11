@@ -1,22 +1,37 @@
+const btn = document.getElementById('submit');
+
+btn.addEventListener('click', function handleClick(event) {
+  // prevents page reload
+  event.preventDefault();
+
+  const hiddenInput = document.getElementById('sr');
+  const emailInput = document.getElementById('inputEmail3');
+  const ageInput = document.getElementById('age');
+
+  // clear input field
+  hiddenInput.value = '';
+  emailInput.value = '';
+  ageInput.value = '';
+});
+
+
 function onclickSubmit() {
-  if ($.fn.DataTable.isDataTable("#example") && DataTable != "") {
-    $("#example").DataTable().destroy();
-  }
-  $("#example tbody").empty();
-  var sr = Employee.length + 1;
-  
+ 
+    var sr = document.getElementById("sr").value;
     let email = document.getElementById("inputEmail3").value;
     let age = document.getElementById("age").value;
-    let gen;
-    if (document.getElementById("gridRadios1").checked == true) {
-      gen = "Male";
-    } else {
-      gen = "Female";
-    }
-  
-
-  var Actions = `<button id='edit' onclick="onClickEdit(${sr})">${"Edit"}</button><button id='delete' onclick="onClickDelete(${sr})">${"Delete"}</button>`;
-  Employee.push([sr, email, age, gen, Actions]);
+    let gen = document.querySelector('input[name="gender"]:checked').value;
+    var Actions = `<button id='edit' onclick="onClickEdit(${sr})">${"Edit"}</button><button id='delete' onclick="onClickDelete(${sr})">${"Delete"}</button>`;
+    
+  if(!sr=='')
+  {
+    updateEmployee(sr,email,age,gen);
+  }
+  else
+  {
+    var sr = Employee.length + 1;
+    var Actions = `<button id='edit' onclick="onClickEdit(${sr})">${"Edit"}</button><button id='delete' onclick="onClickDelete(${sr})">${"Delete"}</button>`;
+    Employee.push([sr, email, age, gen, Actions]);
 
   $("#example")
     .on("draw.dt", function () {})
@@ -32,15 +47,17 @@ function onclickSubmit() {
       scrollCollapse: true,
     });
   textClear();
+  }
 }
 
 function onClickDelete(e) {
-  //   console.log(e);
+    console.log(e);
   // for(let i=0;i<Employee.length;i++)
   // {
   //   if(e==Employee[i][0])
   //     {
   //       Employee.splice(i,1);
+  //       Employee[i][0] = i + 1;
   //     }
   // }
   // for(let i=0;i<Employee.length;i++)
@@ -71,30 +88,25 @@ function onClickDelete(e) {
     });
 }
 
-// function onClickEdit(p) {
-//   console.log(p);
-//   for (let i = 0; i < Employee.length; i++) {
-//     if (p == Employee[i][0]) {
-//       document.getElementById("inputEmail3").value = Employee[i][1];
-//       document.getElementById("age").value = Employee[i][2];
-//     }
-//   }
-// }
 function onClickEdit(p){
   let sr=Employee[p-1][0];
   let email=Employee[p-1][1];
   let age=Employee[p-1][2];
-
+  
+  document.getElementById("sr").value = sr;
+  document.getElementById("inputEmail3").value = email;
+  document.getElementById("age").value = age;
 
 }
-function updateEmployeeData(employeeNum,email,age,gender){
-      let index=employeeNum-1;
+
+function updateEmployee(sr,email,age,gender){
+      let index=sr-1;
  
-   employeeData[index].splice(1,3,email,age,gender);
+   Employee[index].splice(1,3,email,age,gender);
  
    $('#example').on('draw.dt', function(){
     }).DataTable({
-        data:employeeData,
+        data:Employee,
       'destroy': true,
       'paging': true,
       'lengthChange': true,
@@ -103,7 +115,7 @@ function updateEmployeeData(employeeNum,email,age,gender){
       'info': true,
       'autoWidth': true 
     })
-
+  }
 
 
 
