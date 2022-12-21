@@ -25,7 +25,7 @@ Router.get("/getemployee", (req, resp) => {
         resp.write(`<h1>${result}</h1>`);
         resp.end(); */
         console.log(data);
-        resp.send(data);
+        resp.send(JSON.stringify(data));
       }
     });
   

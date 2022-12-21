@@ -73,18 +73,8 @@
                 <th>Action</th>
               </tr>
             </thead>
-             <!--  <tbody id="employee-list">
-                <tr>
-                  <td>1</td>
-                  <td>karan</td>
-                  <td>22</td>
-                  <td>male</td>
-                  <td>
-                    <a href="#" class="btn btn-warning edit">Edit</a>
-                    <a href="#" class="btn btn-danger delete">Delete</a>
-                  </td>
-                </tr>
-              </tbody> -->
+              <tbody id="employee-list">
+              </tbody> 
           </table>
         </div>
       </div>
@@ -103,10 +93,48 @@
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+       
+       
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
 
-  <script>
-    var tableRefresh;
-    var employeeData = [  ]	
+ fetch('http://localhost:4000/getemployee')
+        .then(async (response) => {
+          if (response.status == 200) {
+            var employeeData = [await response.text()];
+            var jsonData = JSON.parse(employeeData);
+            console.log(jsonData.length);
+            let placeholder = document.querySelector('#employee-list');
+            let out= '';
+            for(let i=0;i<jsonData.length;i++){
+              console.log(jsonData[0].Employee_Id)
+                out += `
+                <tr>
+                  <td>${jsonData[i].Employee_Id}</td>
+                  <td>${jsonData[i].First_Name}</td>
+                  <td>${jsonData[i].Last_Name}</td>
+                  <td>${jsonData[i].Employee_Type}</td>
+                  <td>${jsonData[i].Pincode}</td>
+                </tr>
+              `;
+            }
+            placeholder.innerHTML=out;
+          } 
+          else {
+            console.log(`Received error: status=${response.status}`);
+          }
+        })
+        .catch((error) => {
+          console.error(`Occured exception: ${error}`);
+        });
+
+       /*  var tableRefresh;
+    //var employeeData = []	
   var tableofEmployee=  $(document).ready(function() {
      tableRefresh= $('#example').DataTable( {
 	        lengthChange: false,
@@ -120,18 +148,8 @@
           'autoWidth': true 
 	    } );
 	  
-      });      
-	  
-      
-  
-     </script>
-       
-       
-  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+      });  */
+</script>
 </body>
 
 </html>
