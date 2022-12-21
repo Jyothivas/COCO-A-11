@@ -1,0 +1,14 @@
+SELECT * FROM expense_table where birth_date BETWEEN "1990-11-01" AND "2022-11-1"
+
+SELECT * FROM expense_table where birth_date BETWEEN "2022-05-01" AND "2022-05-15"
+
+SELECT * FROM members where last_name like "%t"
+
+SELECT * FROM expense_table WHERE birth(birth_date) in (22)
+
+SELECT roll no,name FROM expense_table WHERE  birth_date BETWEEN "1990-11-01" AND "1995-11-15"
+
+SELECT roll no,student name_by,marks,percentage_name, FROM  INNER JOIN expense_table 
+
+
+SELECT roll no,name,birth_date,grade_by FROM student_table  INNER JOIN members  WHERE exp_date BETWEEN "2022-11-01" AND "1995-11-15"
