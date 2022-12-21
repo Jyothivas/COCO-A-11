@@ -1,0 +1,81 @@
+.leftbody {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, rgb(188, 189, 185), rgb(246, 248, 249));
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .center {
+      position: relative;
+      padding: 50px 50px;
+      background: #fff;
+      border-radius: 50px;
+    }
+    
+    .center h1 {
+      font-size: 2em;
+      padding: 10px;
+      color: #000;
+      letter-spacing: 5px;
+      margin-bottom: 50px;
+      font-weight: bold;
+      padding-left: 10px;
+    }
+     .error p{
+      color: red;
+    }
+    .center .inputbox {
+      position: relative;
+      width: 300px;
+      height: 50px;
+      margin-bottom: 50px;
+    }
+    .center .inputbox input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      border: #fff;
+      padding: 5px;
+      border-bottom: 2px solid grey;
+      background: none;
+      font-size: 1.2em;
+    }
+    .center .inputbox input:focus{
+      outline: 0;
+    }
+  
+    .center .inputbox [type="button"] {
+      width: 50%;
+      border-radius: 50px;
+      margin: 50px;
+      padding: 10px;
+      background: blue;
+      color: #fff;
+      border: #fff;
+    }
+    .center .inputbox:hover [type="button"] {
+      background: dodgerblue;
+    }
+  
+  
+    #containerexample {display: none}
+  #loadercontainer{
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+  
+  .table{
+    background-color: blue;
+  
+  }
+  .table tr{
+    color: #fff;
+  }
