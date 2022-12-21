@@ -1,19 +1,3 @@
-const btn = document.getElementById('submit');
-
-btn.addEventListener('click', function handleClick(event) {
-  // prevents page reload
-  event.preventDefault();
-
-  const hiddenInput = document.getElementById('sr');
-  const emailInput = document.getElementById('inputEmail3');
-  const ageInput = document.getElementById('age');
-
-  // clear input field
-  hiddenInput.value = '';
-  emailInput.value = '';
-  ageInput.value = '';
-});
-
 
 function onclickSubmit() {
  
@@ -23,7 +7,7 @@ function onclickSubmit() {
     let gen = document.querySelector('input[name="gender"]:checked').value;
     var Actions = `<button id='edit' onclick="onClickEdit(${sr})">${"Edit"}</button><button id='delete' onclick="onClickDelete(${sr})">${"Delete"}</button>`;
     
-  if(!sr=='')
+  if(sr!=='')
   {
     updateEmployee(sr,email,age,gen);
   }
@@ -37,55 +21,59 @@ function onclickSubmit() {
     .on("draw.dt", function () {})
     .DataTable({
       data: Employee,
-      destroy: true,
-      autoWidth: false,
-      info: false,
-      JQueryUI: true,
-      ordering: true,
-      paging: false,
-      scrollY: "500px",
-      scrollCollapse: true,
+      'destroy': true,
+      'autoWidth': false,
+      'info': false,
+      'JQueryUI': true,
+      'ordering': true,
+      'paging': false,
+      'scrollY': "500px",
+      'scrollCollapse': true,
     });
   textClear();
   }
 }
 
 function onClickDelete(e) {
-    console.log(e);
   // for(let i=0;i<Employee.length;i++)
   // {
   //   if(e==Employee[i][0])
   //     {
   //       Employee.splice(i,1);
-  //       Employee[i][0] = i + 1;
   //     }
   // }
+  // let j=0;
   // for(let i=0;i<Employee.length;i++)
   // {
-  //   Employee[i][0]=i+1;
+  //   Employee[i][0]=j+1;
+  //   j++;
   // }
   var dup = [];
-  console.log(Employee);
-  for (let i = 0; i < Employee.length; i++) {
+  let j=0;
+  for (let i = 0; i <Employee.length; i++) {
     if (Employee[i][0] !== e) {
-      Employee[i][0] = i + 1;
-      dup[i] = Employee[i];
+      dup.push([
+        Employee[i][0]=j+1,
+        Employee[i][1],
+        Employee[i][2],
+        Employee[i][3],
+        Employee[i][4] = `<button id='edit' onclick="onClickEdit(${j+1})">${"Edit"}</button><button id='delete' onclick="onClickDelete(${j+1})">${"Delete"}</button>`
+      ]);
+      j++;
     }
   }
   Employee = dup;
-  $("#example")
-    .on("draw.dt", function () {})
-    .DataTable({
-      data: Employee,
-      destroy: true,
-      autoWidth: false,
-      info: false,
-      JQueryUI: true,
-      ordering: true,
-      paging: false,
-      scrollY: "500px",
-      scrollCollapse: true,
-    });
+ $('#example').on('draw.dt', function(){
+    }).DataTable({
+      data:Employee,
+      'destroy': true,
+      'paging': true,
+      'lengthChange': true,
+      'searching': true,
+      'ordering': true,
+      'info': true,
+      'autoWidth': true 
+    })
 }
 
 function onClickEdit(p){
@@ -100,7 +88,9 @@ function onClickEdit(p){
 }
 
 function updateEmployee(sr,email,age,gender){
+  console.log("line no 109 " + sr);
       let index=sr-1;
+      
  
    Employee[index].splice(1,3,email,age,gender);
  
@@ -120,6 +110,7 @@ function updateEmployee(sr,email,age,gender){
 
 
 function textClear() {
+  sr =document.getElementById('sr').value="";
   email = document.getElementById("inputEmail3").value = "";
   age = document.getElementById("age").value = "";
 }

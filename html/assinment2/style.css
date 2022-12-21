@@ -1,12 +1,13 @@
-
-
+body{
+    
+}
 .left{
-   
     border-radius: 10px;
     height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 .formh2{
     margin-bottom: 60px;
@@ -14,8 +15,8 @@
 }
 .right{
     
-   
-    background-color: rgb(199, 196, 196);
+   height: 100%;
+    background-color: #dadce0;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -43,6 +44,8 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
         
     
 }
@@ -58,23 +61,29 @@
             'Open Sans',
             'Helvetica Neue',
             sans-serif;
-    border-radius: 5px;
+    
     border: none;
+    border-bottom: 1px solid black;
+    background:none;
     font-size: 20px;
-    font-family: serif;
     margin-left: 20px;
     outline: 0;
 }
+.gen{
+    display: flex;
+    justify-content: space-evenly;
+}
 .submitbtn{
+    margin-top: 1rem;
     font-size: 15px;
-    background: rgb(240, 4, 4);
+    background: rgb(218, 35, 35);
     color: white;
     border-radius: 20px;
-    border-color: rgba(237, 7, 7, 0.986);
+    border: none;
     padding-top: 6px;
     padding-bottom: 6px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
     transition: all 0.5s;
     font-family: system-ui,
         -apple-system,
