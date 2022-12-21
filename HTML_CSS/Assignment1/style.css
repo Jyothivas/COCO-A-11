@@ -1,0 +1,27 @@
+
+.title span:nth-child(1){
+    font-style: italic;
+}
+
+.leftside{
+
+    width: 50%;
+    height: 100vh;
+    background-color: red;
+    text-align: center;
+    
+
+}
+
+.rightside{
+    width: 50%;
+    height: 100vh;
+    background-color: yellow;
+    text-align: center;
+
+}
+.center h1{
+    margin-top: 50%;
+    text-align: center;
+}
+
