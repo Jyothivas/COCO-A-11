@@ -33,14 +33,14 @@ function AddRow(){
         
     //checking update details or new inserted..              
     if(!srNo==''){
-        updateEmployeeData(srNo,Email,Age,Gender);
+        updateEmployeeData(srNo,Email,Age,Gender,Action);
     }else{
-         srNo = employeeData.length+1;
+         srNo = employeeData.length;
          Action = `<button class="btn btn-success" onclick='editEmployeeData(${srNo})'>Edit</button>
                   <button class="btn btn-danger" onclick='deleteEmployee(${srNo})'>Delete</button>`;
     
     //pushing employee data into array...
-    employeeData.push([srNo,Email,Age,Gender,Action]);
+    employeeData.push([srNo+1,Email,Age,Gender,Action]);
 
     $('#example').on('draw.dt', function(){
      }).DataTable({
@@ -89,9 +89,9 @@ function AddRow(){
 //edit employee details...
 function editEmployeeData(employeeNum){
     
-    let srNo=employeeData[employeeNum-1][0];
-    let email=employeeData[employeeNum-1][1];
-    let age=employeeData[employeeNum-1][2];
+    let srNo=employeeData[employeeNum][0];
+    let email=employeeData[employeeNum][1];
+    let age=employeeData[employeeNum][2];
     
     document.getElementById('srNo').value = srNo;
     document.getElementById('email').value = email;
@@ -99,10 +99,10 @@ function editEmployeeData(employeeNum){
 }
 
 //updating employee data
-function updateEmployeeData(employeeNum,email,age,gender){
-      let index=employeeNum-1;
+function updateEmployeeData(employeeNum,email,age,gender,action){
+      let index=employeeNum;
  
-   employeeData[index].splice(1,3,email,age,gender);
+   employeeData[index].splice(1,3,email,age,gender,action);
  
    $('#example').on('draw.dt', function(){
     }).DataTable({
