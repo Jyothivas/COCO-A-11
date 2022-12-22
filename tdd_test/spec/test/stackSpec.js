@@ -1,4 +1,4 @@
-const stack = require('../../lib/jasmine_examples/test/stack');
+const stack = require('../../lib/test/stack');
 
 describe('stack class',function(){
     it('push the value in a stack.',function(){
