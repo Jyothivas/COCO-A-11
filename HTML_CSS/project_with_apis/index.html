@@ -73,7 +73,7 @@
                 <th>Action</th>
               </tr>
             </thead>
-              <tbody id="employee-list">
+              <tbody id="user-list">
               </tbody> 
           </table>
         </div>
@@ -103,23 +103,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
- fetch('http://localhost:4000/getemployee')
+ fetch('http://localhost:4000/get_user')
         .then(async (response) => {
           if (response.status == 200) {
-            var employeeData = [await response.text()];
-            var jsonData = JSON.parse(employeeData);
+            var user_data = [await response.text()];
+            var jsonData = JSON.parse(user_data);
             console.log(jsonData.length);
-            let placeholder = document.querySelector('#employee-list');
+            let placeholder = document.querySelector('#user-list');
             let out= '';
             for(let i=0;i<jsonData.length;i++){
-              console.log(jsonData[0].Employee_Id)
+              console.log(jsonData[0].user_id)
                 out += `
                 <tr>
-                  <td>${jsonData[i].Employee_Id}</td>
-                  <td>${jsonData[i].First_Name}</td>
-                  <td>${jsonData[i].Last_Name}</td>
-                  <td>${jsonData[i].Employee_Type}</td>
-                  <td>${jsonData[i].Pincode}</td>
+                  <td>${jsonData[i].user_id}</td>
+                  <td>${jsonData[i].email}</td>
+                  <td>${jsonData[i].age}</td>
+                  <td>${jsonData[i].gender}</td>
+                  <td><button class="btn btn-success" onclick='editEmployeeData(${jsonData[i].user_id})'>Edit</button>
+                  <button class="btn btn-danger" onclick='delete_user(${jsonData[i].user_id})'>Delete</button></td>
                 </tr>
               `;
             }
@@ -132,23 +133,6 @@
         .catch((error) => {
           console.error(`Occured exception: ${error}`);
         });
-
-       /*  var tableRefresh;
-    //var employeeData = []	
-  var tableofEmployee=  $(document).ready(function() {
-     tableRefresh= $('#example').DataTable( {
-	        lengthChange: false,
-          data:employeeData,
-          'destroy': true,
-          'paging': true,
-          'lengthChange': true,
-          'searching': true,
-          'ordering': true,
-          'info': true,
-          'autoWidth': true 
-	    } );
-	  
-      });  */
 </script>
 </body>
 
