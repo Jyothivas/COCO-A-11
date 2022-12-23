@@ -51,16 +51,17 @@
     outline: 0;
   }
 
-  .center .inputbox [type="button"] {
+  .center .inputbox [type="submit"] {
     width: 50%;
     border-radius: 50px;
-    margin: 50px;
+    top: 30px;
+    left: 80px;
     padding: 10px;
     background: blue;
     color: #fff;
     border: #fff;
   }
-  .center .inputbox:hover [type="button"] {
+  .center .inputbox:hover [type="submit"] {
     background: dodgerblue;
   }
 

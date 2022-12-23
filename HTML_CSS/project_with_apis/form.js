@@ -1,118 +1,71 @@
-const btn = document.getElementById('btnAdd');
 
-btn.addEventListener('click', function handleClick(event) {
-  // 👇️ if you are submitting a form (prevents page reload)
-  event.preventDefault();
+const express = require("express");
+const path = require('path');
+const bodyParser = require("body-parser");
+const mysqlConnection = require("../../html_css_db/utils/database");
 
-  const hiddenInput = document.getElementById('srNo');
-  const emailInput = document.getElementById('email');
-  const ageInput = document.getElementById('age');
+const Router = express.Router();
+const cors = require("cors");
 
-  
 
-  // 👇️ clear input field
-  hiddenInput.value = '';
-  emailInput.value = '';
-  ageInput.value = '';
+var app = express();
+app.use(cors());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.use(Router);
+
+//showing html page
+ app.get('/',function(req,resp){
+    resp.sendFile(path.join(__dirname,'/index.html'));
+ })    
+
+ //add new user
+app.post('/',function(req,resp){
+    var email = req.body.Email;
+    var age = req.body.Age;
+    var gender = req.body.gender;
+    console.log(req.body)
+    const sql ="INSERT INTO users (email, age, gender) VALUES (?,?,?)";
+    mysqlConnection.query(sql, [email, age, gender],(err, results, fields) => {
+        if (!err) {
+          resp.sendFile(path.join(__dirname,'/index.html'));
+        } else {
+          console.log(err);
+        }
+      });
+})
+
+//delete employee by id
+app.get("/delete_user", (req, res) => {
+  console.log(req.query.id)
+  mysqlConnection.query(
+    "DELETE FROM users WHERE user_id= ?",
+    [req.query.id],
+    (err, results, fields) => {
+      if (!err) {
+        res.redirect('/');
+      } else {
+        console.log(err);
+      }
+    }
+  );
 });
 
-//form submit function 
-function AddRow(){
-    var srNo=document.getElementById('srNo').value;
-    let Email = document.getElementById('email').value;
-    let Age = document.getElementById('age').value;
-    let Gender = document.querySelector('input[name="gender"]:checked').value;
-    var Action = `<button class="btn btn-success" onclick='editEmployeeData(${srNo})'>Edit</button>
-                  <button class="btn btn-danger" onclick='deleteEmployee(${srNo})'>Delete</button>`;
+//update user by user id
+app.get("/update_user",(req, res) =>{
 
-            /*       if(Email==''){
-                    console.log('validation');
-                    document.getElementById('error').innerHTML='Please enter valid email';
-                    document.getElementById('error').style.borderColor='red';
-                } */
-        
-    //checking update details or new inserted..              
-    if(!srNo==''){
-        updateEmployeeData(srNo,Email,Age,Gender,Action);
-    }else{
-         srNo = employeeData.length;
-         Action = `<button class="btn btn-success" onclick='editEmployeeData(${srNo})'>Edit</button>
-                  <button class="btn btn-danger" onclick='deleteEmployee(${srNo})'>Delete</button>`;
-    
-    //pushing employee data into array...
-    employeeData.push([srNo+1,Email,Age,Gender,Action]);
-
-    $('#example').on('draw.dt', function(){
-     }).DataTable({
-         data:employeeData,
-       'destroy': true,
-       'paging': true,
-       'lengthChange': true,
-       'searching': true,
-       'ordering': true,
-       'info': true,
-       'autoWidth': true 
-     })
-  
-    } 
-}
-
-
-//deleteEmployee using sr number...
- function deleteEmployee(employeeNum){
-
-    //finding array index position..
-    for( let i = 0; i < employeeData.length; i++){ 
-         if ( employeeData[i][0] === employeeNum) { 
-                employeeData.splice(i, 1); 
-        }
-    }
-
-    //new index position assigning...
-    for (let i = 0; i < employeeData.length; i++) {
-        employeeData[i][0] = i+1;
-    }
-
-    //reloading data..
-    $('#example').on('draw.dt', function(){
-    }).DataTable({
-        data:employeeData,
-      'destroy': true,
-      'paging': true,
-      'lengthChange': true,
-      'searching': true,
-      'ordering': true,
-      'info': true,
-      'autoWidth': true 
-    })
-}  
-//edit employee details...
-function editEmployeeData(employeeNum){
-    
-    let srNo=employeeData[employeeNum][0];
-    let email=employeeData[employeeNum][1];
-    let age=employeeData[employeeNum][2];
-    
-    document.getElementById('srNo').value = srNo;
+  mysqlConnection.query(`select * from users WHERE user_id=?`,[req.query.id],(err, results, fields) => {
+    if (!err) {
+      console.log(results[0].email);
+   /*    document.getElementById('srNo').value = srNo;
     document.getElementById('email').value = email;
-    document.getElementById('age').value = age;
-}
+    document.getElementById('age').value = age; */
+    } else {
+      console.log(err);
+    }
+  })
+});
 
-//updating employee data
-function updateEmployeeData(employeeNum,email,age,gender,action){
-      let index=employeeNum;
- 
-   employeeData[index].splice(1,3,email,age,gender,action);
- 
-   $('#example').on('draw.dt', function(){
-    }).DataTable({
-        data:employeeData,
-      'destroy': true,
-      'paging': true,
-      'lengthChange': true,
-      'searching': true,
-      'ordering': true,
-      'info': true,
-      'autoWidth': true 
-    })
-}
+app.listen(3000);
