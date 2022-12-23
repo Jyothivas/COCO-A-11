@@ -8,8 +8,6 @@ btn.addEventListener('click', function handleClick(event) {
   const emailInput = document.getElementById('email');
   const ageInput = document.getElementById('age');
 
-  
-
   // 👇️ clear input field
   hiddenInput.value = '';
   emailInput.value = '';
@@ -22,29 +20,23 @@ function AddRow(){
     let Email = document.getElementById('email').value;
     let Age = document.getElementById('age').value;
     let Gender = document.querySelector('input[name="gender"]:checked').value;
-    var Action = `<button class="btn btn-success" onclick='editEmployeeData(${srNo})'>Edit</button>
+    var updateAction = `<button class="btn btn-success" onclick='editEmployeeData(${srNo})'>Edit</button>
                   <button class="btn btn-danger" onclick='deleteEmployee(${srNo})'>Delete</button>`;
-
-            /*       if(Email==''){
-                    console.log('validation');
-                    document.getElementById('error').innerHTML='Please enter valid email';
-                    document.getElementById('error').style.borderColor='red';
-                } */
-        
+    
     //checking update details or new inserted..              
     if(!srNo==''){
-        updateEmployeeData(srNo,Email,Age,Gender);
+        updateEmployeeData(srNo,Email,Age,Gender,updateAction);
     }else{
          srNo = employeeData.length+1;
-         Action = `<button class="btn btn-success" onclick='editEmployeeData(${srNo})'>Edit</button>
+                Action = `<button class="btn btn-success" onclick='editEmployeeData(${srNo})'>Edit</button>
                   <button class="btn btn-danger" onclick='deleteEmployee(${srNo})'>Delete</button>`;
     
     //pushing employee data into array...
     employeeData.push([srNo,Email,Age,Gender,Action]);
 
     $('#example').on('draw.dt', function(){
-     }).DataTable({
-         data:employeeData,
+    }).DataTable({
+        data:employeeData,
        'destroy': true,
        'paging': true,
        'lengthChange': true,
@@ -53,17 +45,15 @@ function AddRow(){
        'info': true,
        'autoWidth': true 
      })
-  
-    } 
+    }
 }
 
 
 //deleteEmployee using sr number...
- function deleteEmployee(employeeNum){
-
-    //finding array index position..
+ function deleteEmployee(srno){
+     //finding array index position..
     for( let i = 0; i < employeeData.length; i++){ 
-         if ( employeeData[i][0] === employeeNum) { 
+         if ( employeeData[i][0] === srno) { 
                 employeeData.splice(i, 1); 
         }
     }
@@ -71,6 +61,8 @@ function AddRow(){
     //new index position assigning...
     for (let i = 0; i < employeeData.length; i++) {
         employeeData[i][0] = i+1;
+        employeeData[i][4] = `<button class="btn btn-success" onclick='editEmployeeData(${i+1})'>Edit</button>
+                  <button class="btn btn-danger" onclick='deleteEmployee(${i+1})'>Delete</button>`;
     }
 
     //reloading data..
@@ -99,10 +91,10 @@ function editEmployeeData(employeeNum){
 }
 
 //updating employee data
-function updateEmployeeData(employeeNum,email,age,gender){
+function updateEmployeeData(employeeNum,email,age,gender,action){
       let index=employeeNum-1;
  
-   employeeData[index].splice(1,3,email,age,gender);
+   employeeData[index].splice(1,3,email,age,gender,action);
  
    $('#example').on('draw.dt', function(){
     }).DataTable({

@@ -73,11 +73,11 @@
     transform: translate(-50%, -50%);
 }
 
-.table{
+.table th{
   background-color: blue;
 
 }
-.table tr{
+.table th{
   color: #fff;
 }
 
