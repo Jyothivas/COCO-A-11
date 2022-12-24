@@ -56,9 +56,10 @@ app.get("/delete_user", (req, res) => {
 //update user by user id
 app.get("/update_user",(req, res) =>{
 
-  mysqlConnection.query(`select * from users WHERE user_id=?`,[req.query.id],(err, results, fields) => {
-    if (!err) {
-      console.log(results[0].email);
+  mysqlConnection.query(`select * from users WHERE user_id=?`,[req.query.id],(err, data) => {
+    if(!err){
+      var Data = JSON.stringify(data);
+      console.log("data "+Data);
    /*    document.getElementById('srNo').value = srNo;
     document.getElementById('email').value = email;
     document.getElementById('age').value = age; */
