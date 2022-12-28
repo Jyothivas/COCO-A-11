@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    
+    <title>View-contacts</title>
+</head>
+<body>
+    <div class="container-fluid ">
+    <div class="row text-center">    
+    <div class="col-lg-12">
+        
+        <div class="data p-5">
+            <h1>All contact details</h1>
+          <table id="data-table" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <thead>
+              <tr>
+                <th>Contact Id</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Office Number</th>
+                <th>Email</th>
+                <th>Business Email</th>
+                <th>Company Name</th>
+                <th>Job Title</th>
+                <th>Address</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+        </div>
+    </div>
+    
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+  <script src="backend.js"></script> 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+
+  
+    <script>
+      fetch('http://localhost:9000/contacts')
+        .then(async (response) => {
+          if (response.status == 200) {
+            var user_data = [await response.text()];
+            var jsonData = JSON.parse(user_data);
+            console.log("user_data "+user_data)
+            console.log("jsondata "+jsonData)
+            var contact = [user_data];	
+      
+      
+         $(document).ready(function() {
+         $('#data-table').DataTable( {
+            data : jsonData,
+            columns:[
+              {'data':"contact_id"},
+              {'data':"first_name"},
+              {'data':"middle_name"},
+              {'data':"Last_name"},
+              {'data':"phone_number"},
+              {'data':"work_number"},
+              {'data':"business_email"},
+              {'data':"email"},
+              {'data':"company_name"},
+              {'data':"job_title"},
+              {'data':"address"},
+
+            ],
+            'destroy': true,
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': true 
+          });
+        
+        });      
+      
+          }else {
+            console.log(`Received error: status=${response.status}`);
+          }
+        })
+        .catch((error) => {
+          console.error(`Occured exception: ${error}`);
+        });
+  </script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+</body>
+</html>
