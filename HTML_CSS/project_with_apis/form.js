@@ -59,10 +59,17 @@ app.get("/update_user",(req, res) =>{
   mysqlConnection.query(`select * from users WHERE user_id=?`,[req.query.id],(err, data) => {
     if(!err){
       var Data = JSON.stringify(data);
-      console.log("data "+Data);
-   /*    document.getElementById('srNo').value = srNo;
-    document.getElementById('email').value = email;
-    document.getElementById('age').value = age; */
+      var jsonData = JSON.parse(Data);
+      console.log("Data "+Data);
+      console.log("jsonData "+jsonData);
+      console.log("email "+jsonData[0].email);
+
+      let id=jsonData[0].user_id;
+      let email=jsonData[0].email;
+      let age=jsonData[0].age;
+
+      update(id,email,age);
+
     } else {
       console.log(err);
     }
@@ -70,3 +77,4 @@ app.get("/update_user",(req, res) =>{
 });
 
 app.listen(3000);
+

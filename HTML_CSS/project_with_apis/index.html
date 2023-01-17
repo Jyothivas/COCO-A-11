@@ -32,6 +32,7 @@
         true;
       }
     }
+    
   </script>
 </head>
 
@@ -45,7 +46,12 @@
 
           <h1>New Employee</h1>
 
-          <form action="/" method="post" onsubmit="return validate()" name="myForm">
+          <form action="/" method="post" onsubmit="return validate()" id="myForm">
+
+            <div class="inputbox">
+              <input type="text" id="user_id" name="user_id" value='' >
+              <p id="error"></p>
+            </div>
             
             <div class="inputbox">
               <input type="email" id="email" name="Email" value='' placeholder="Email">
@@ -126,7 +132,6 @@
           if (response.status == 200) {
             var user_data = [await response.text()];
             var jsonData = JSON.parse(user_data);
-            console.log("jsondata "+jsonData[3].email)
             let placeholder = document.querySelector('#user-list');
             let out= '';
             for(let i=0;i<jsonData.length;i++){
