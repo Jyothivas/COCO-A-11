@@ -1,0 +1,15 @@
+.container{
+    background-color:blue;
+}
+.container h1{
+    color: #fff;
+}
+a{
+    text-decoration: none;
+}
+
+.btncart{
+    margin-top: 8px;
+    float: right;
+    margin-right: 30px;
+}
