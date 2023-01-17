@@ -1,0 +1,15 @@
+<div class="container text-center my-4"><h1 class="display-3 my-4">View Todo List</h1>
+    <div class="row table">
+        <div class="col-3">Id</div>
+        <div class="col-3">Name</div>
+        <div class="col-3">Email</div>
+        <div class="col-3">Action</div> 
+    </div>
+        <div class="row table" *ngFor="let item of data">
+            <div class="col-3">{{item[0]}}</div>
+            <div class="col-3">{{item[1]}}</div>
+            <div class="col-3">{{item[2]}}</div>
+            <div class="col-3"><button class="btn btn-outline-danger" (click)="removeItem(item[0])" >remove</button></div> 
+        </div>
+
+</div>
