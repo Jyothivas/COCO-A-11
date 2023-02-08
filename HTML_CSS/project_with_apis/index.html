@@ -132,7 +132,8 @@
           if (response.status == 200) {
             var user_data = [await response.text()];
             var jsonData = JSON.parse(user_data);
-            let placeholder = document.querySelector('#user-list');
+            let placeholde
+            r = document.querySelector('#user-list');
             let out= '';
             for(let i=0;i<jsonData.length;i++){
              
