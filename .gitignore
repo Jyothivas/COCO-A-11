@@ -4,3 +4,5 @@ node_modules
 dustaka.
 dustaka.site/
 dustaka.site.zip
+angular/angular-practice/.editorconfig
+*.json
