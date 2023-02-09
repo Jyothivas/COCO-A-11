@@ -6,6 +6,7 @@ import { Button, } from "reactstrap";
 function View() {
 
     const user = useSelector((state)=>state);
+    console.log(user);
 
     return (
         <div className="container text-center my-4"><h1 className="display-5 my-4">View Todo List</h1>

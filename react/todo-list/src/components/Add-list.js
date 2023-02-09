@@ -1,18 +1,23 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
 
-function Add(props) {
+function Add() {
   const User={
     name:'',
     email:''
   }
 
+  const dispatch = useDispatch();
+
+  const addingUser = () =>{
+    dispatch({type:"addUser",payload:userData})
+  }
   const [userData, setUserData]=useState(User);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.userData=userData;
   }
   
   return (
@@ -48,7 +53,7 @@ function Add(props) {
               </Label>
             </FormGroup>
 
-            <Button color="success" type="submit" onClick={()=>{}}>
+            <Button color="success" type="submit" onClick={addingUser}>
               Add
             </Button>
           </Form>
