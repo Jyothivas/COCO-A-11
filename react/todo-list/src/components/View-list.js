@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
+import { useSelector} from "react-redux";
 import { Button, } from "reactstrap";
-import Store from "../Store";
 
 
 function View() {
-   const context = useContext(Store);
-   console.log(context.state);
+
+    const user = useSelector((state)=>state);
 
     return (
         <div className="container text-center my-4"><h1 className="display-5 my-4">View Todo List</h1>
@@ -16,10 +16,10 @@ function View() {
                 <div className="col-3">Action</div>
             </div>
             <div className="row table" >
-                {context.state.length > 0
-                    ? context.state.map((item) =>
+                {user.length > 0
+                    ?user.map((item,index) =>
                         <>
-                            <div className="col-3">{item.id}</div>
+                            <div className="col-3">{index+1}</div>
                             <div className="col-3">{item.name}</div>
                             <div className="col-3">{item.email}</div>
                             <div className="col-3"><Button color="danger" className="my-1" >remove</Button></div>

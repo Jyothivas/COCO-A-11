@@ -1,28 +1,17 @@
-import React, { useReducer } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
 import Add from './Add-list';
 import View from './View-list';
-import {} from '../Store'
+import store from '../store/store';
 
 const Container = () => {
 
-  const initialState = [{ id: 1, name: 'karan', email: 'karan@gamil.com' }];
-
-  const reducer = (state = initialState, action) => {
-    console.log(action.type);
-    if (action.type === "AddUser")
-    
-      return [...state,];
-    return state;
-  };
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-
   return (
     <div className='App'>
-      <Store.Provider value={{ state, dispatch }}>
+      <Provider store={store}>
         <Add />
         <View />
-      </Store.Provider>
+      </Provider>
     </div>
   );
 

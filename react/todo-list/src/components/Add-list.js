@@ -1,9 +1,8 @@
-import {Store} from '../Store';
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
 
-function Add() {
+function Add(props) {
   const User={
     name:'',
     email:''
@@ -11,15 +10,10 @@ function Add() {
 
   const [userData, setUserData]=useState(User);
 
-  
-  const dispatch = useContext(Store);
-  
-  
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    props.userData=userData;
   }
-  
   
   return (
     <div className="container text-center">
@@ -54,7 +48,7 @@ function Add() {
               </Label>
             </FormGroup>
 
-            <Button color="success" type="submit" onClick={()=>{dispatch("AddData");}}>
+            <Button color="success" type="submit" onClick={()=>{}}>
               Add
             </Button>
           </Form>
