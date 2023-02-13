@@ -1,12 +1,12 @@
 <h1 class="heading">Reactive Form Works!</h1>
 <div class="heading">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <input type="text" placeholder="Enter Username" formControlName="username">
+        <input type="text" placeholder="Enter Username" formControlName="username" required>
         <br/><br/>
-        <input type="email" placeholder="Enter Email" formControlName="email">
+        <input type="email" placeholder="Enter Email" formControlName="email" required> 
         <br/><br/>
-        <input type="password" placeholder="Enter password" formControlName="password">
+        <input type="password" placeholder="Enter password" formControlName="password" required>
         <br/><br/>
-        <input type="submit" value="Submit" [disabled]="!registerForm.valid" >
+        <button type="submit" [disabled]="!registerForm.valid">Submit</button>
     </form>
 </div>
