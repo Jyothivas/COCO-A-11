@@ -1,0 +1,39 @@
+
+
+<h1 class="center">Structure Directive *ngFor in Angular</h1>
+<div class="center" *ngFor="let emp of employee;let i=index">
+    {{i+1}} {{emp.name}}
+    
+</div>
+<div class="center">
+    <h1>Ng template rendering with ngFor</h1>
+    <ng-template  [ngFor] let-emp [ngForOf]="employee" let-i="index">
+        <p>{{i+1}} {{emp.name}}</p>
+    </ng-template>
+</div>
+
+<div class="center">
+    <ng-container *ngIf="display else loading">
+        <h2>ng Container in Angular</h2>
+        this is the ng-container
+    </ng-container>
+    <ng-template #loading>
+        <h2>ng Template in Angular</h2>
+        this is the ng-template
+    </ng-template>
+
+    <table border="1">
+        <tr>
+            <th>Sr.No.</th>
+            <th>Name</th>
+            <th>Salary</th>
+        </tr>
+        <tr *ngFor="let emp of employee; let i=index ">
+            <ng-container *ngIf="emp.salary>10000">
+                <td>{{i+1}}</td>
+                <td>{{emp.name}}</td>
+                <td>{{emp.salary}}</td>
+            </ng-container>
+        </tr>
+    </table>
+</div>

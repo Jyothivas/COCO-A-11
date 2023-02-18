@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactivepracticeform',
@@ -7,12 +7,25 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./reactivepracticeform.component.css']
 })
 export class ReactivepracticeformComponent {
-  registerForm=new FormGroup({
-    username:new FormControl(''),
-    email:new FormControl(''),
-    password:new FormControl('')
-  });
-  onSubmit(){
-    console.log(this.registerForm.value);
+  registerForm:any;
+    Name:string = '';
+    Email:string = '';
+    Password:string = '';
+  
+    constructor( frmbuilder:FormBuilder){
+      this.registerForm= frmbuilder.group({
+        username:['',[Validators.required,Validators.maxLength(10)]],
+        email:['',[Validators.email,Validators.required]],
+        password:['',Validators.required]
+      });
+    }
+  postData(registerForm:NgForm){
+    console.log(registerForm.controls);
+  }
+
+
+
+  resetForm(){
+    this.registerForm.reset();
   }
 }

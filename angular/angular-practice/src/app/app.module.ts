@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ReactivepracticeformComponent } from './reactivepracticeform/reactivepracticeform.component';
+import { NgtemplateComponent } from './ngtemplate/ngtemplate.component';
+import { NgswitchtempComponent } from './ngswitchtemp/ngswitchtemp.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputFormComponent,
     ReactivepracticeformComponent,
+    NgtemplateComponent,
+    NgswitchtempComponent,
     
   ],
   imports: [
@@ -19,7 +23,8 @@ import { ReactivepracticeformComponent } from './reactivepracticeform/reactivepr
     AppRoutingModule,
     UserAuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
     
   ],
   providers: [],

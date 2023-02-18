@@ -1,0 +1,15 @@
+
+<h1 class="center">Structure Directive *ngSwitch in Angular</h1>
+<div class="center" [ngSwitch]="'developer'">
+    <p *ngSwitchCase="'developer'">Developer found</p>    
+    <p *ngSwitchCase="'designer'">Designer found</p>    
+    <p *ngSwitchCase="'tester'">Tester found</p>    
+</div>
+<div class="center">
+    <h1>Ng template rendering with ngSwitch</h1>
+    <div  [ngSwitch]="'developer'">
+        <ng-template [ngSwitchCase]="'developer'">Developer found</ng-template>    
+        <ng-template [ngSwitchCase]="'designer'">Designer found</ng-template>    
+        <ng-template [ngSwitchCase]="'tester'">Tester found</ng-template>   
+    </div>
+</div>
