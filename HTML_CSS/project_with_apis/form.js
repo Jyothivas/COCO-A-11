@@ -22,7 +22,7 @@ app.use(Router);
  })    
 
  //add new user
-app.post('/',function(req,resp){
+app.post('/add_user',function(req,resp){
     var email = req.body.Email;
     var age = req.body.Age;
     var gender = req.body.gender;
@@ -38,7 +38,7 @@ app.post('/',function(req,resp){
 })
 
 //delete employee by id
-app.get("/delete_user", (req, res) => {
+app.delete("/delete_user", (req, res) => {
   console.log(req.query.id)
   mysqlConnection.query(
     "DELETE FROM users WHERE user_id= ?",
@@ -54,7 +54,7 @@ app.get("/delete_user", (req, res) => {
 });
 
 //update user by user id
-app.get("/update_user",(req, res) =>{
+app.put("/update_user",(req, res) =>{
 
   mysqlConnection.query(`select * from users WHERE user_id=?`,[req.query.id],(err, data) => {
     if(!err){
