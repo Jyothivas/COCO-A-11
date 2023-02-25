@@ -1,0 +1,13 @@
+
+<!-- <ul *ngFor="let user of users">
+    <li>{{user.email}}</li>
+</ul> -->
+<div  class="container">
+    <app-add-items (userAdd)="addUser($event)"></app-add-items>
+    <div *ngFor="let user of users" class="my-3">
+        <app-storvalues [user]="user" (userDelete)="deleteUser($event)" (userEdit)="editUser($event)"></app-storvalues>
+    </div>
+</div>
+
+
+
