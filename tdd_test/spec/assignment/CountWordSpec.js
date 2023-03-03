@@ -15,6 +15,8 @@ describe('Count Word', function(){
         expect(countWord.strWord('today is thrusday')).toEqual(3);
         expect(countWord.strWord('Total words in a string')).toEqual(5);
         expect(countWord.strWord(' hello how are you? ')).toEqual(4);
+        expect(countWord.strWord(' hello how are ')).toEqual(3);
+        expect(countWord.strWord(' hello how ')).toEqual(2);
 
     });
 });
