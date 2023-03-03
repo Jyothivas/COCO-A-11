@@ -2,6 +2,7 @@ const express = require('express');
 const connection = require('./db');
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { json } = require('body-parser');
 
 const app = express();
 app.use(cors());
@@ -66,5 +67,18 @@ app.delete('/:id',(req,res)=>{
     }
   });
 });
+
+//search api
+app.get('/search',async(req,res)=>{
+  const searchQuery =req.query.name;
+  console.log(searchQuery);
+  connection.query(`SELECT * FROM heroes WHERE name LIKE '%${searchQuery}%'`,(err,result)=>{
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
 app.listen(8282, () => console.log('server started at port:8282'));
