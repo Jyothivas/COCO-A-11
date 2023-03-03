@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroDataService } from '../hero-data.service';
 
@@ -16,7 +16,9 @@ export class HeroesComponent implements OnInit {
     this.getHeroes();
   }
 
+
   getHeroes(): void {
+    console.log('getHeroes()');
     this.heroService.getHeroes()
     .subscribe(heroes => this.heroes = heroes);
   }

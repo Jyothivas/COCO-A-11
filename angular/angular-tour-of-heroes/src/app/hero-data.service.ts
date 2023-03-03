@@ -13,9 +13,9 @@ export class HeroDataService {
     return this.http.get<Hero[]>(this.heroesUrl);
   };
 
-  getHero(id: Number): Observable<Hero> {
+  getHero(id: Number): Observable<Hero[]> {
     const url = `${this.heroesUrl}/${id}`;
-    return this.http.get<Hero>(url);
+    return this.http.get<Hero[]>(url);
   }
 
 
@@ -34,7 +34,7 @@ export class HeroDataService {
 
   /** PUT: update the hero on the server */
   updateHero(hero: Hero): Observable<Hero> {
-    return this.http.put<Hero>(this.heroesUrl, hero);
+    return this.http.put<Hero>(`${this.heroesUrl}/${hero.id}`, hero);
   }
 
 }
