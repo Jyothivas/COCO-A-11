@@ -1,0 +1,19 @@
+.page{
+    width: 100%;
+    border: 1px,solid,rgb(33, 31, 31);
+}
+button{
+    margin: 5px;
+    padding: 8px;
+    color: #fff;
+    border:none;
+    background-color: rgb(91, 170, 240);
+}
+
+.btn1,.btn2{
+    display: inline;
+    float: left;
+}
+.btn3{
+    float: right;
+}

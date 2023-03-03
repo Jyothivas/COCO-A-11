@@ -8,6 +8,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ReactivepracticeformComponent } from './reactivepracticeform/reactivepracticeform.component';
 import { NgtemplateComponent } from './ngtemplate/ngtemplate.component';
 import { NgswitchtempComponent } from './ngswitchtemp/ngswitchtemp.component';
+import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { NgswitchtempComponent } from './ngswitchtemp/ngswitchtemp.component';
     ReactivepracticeformComponent,
     NgtemplateComponent,
     NgswitchtempComponent,
+    ToggleButtonComponent,
+    LayoutComponent,
     
   ],
   imports: [
