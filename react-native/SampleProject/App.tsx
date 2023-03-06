@@ -11,7 +11,7 @@ const App = () => {
         <UserForm />
       </View>
       <View testID='user-data'>
-        <UserData />
+        {/* <UserData /> */}
       </View>
     </>
   );

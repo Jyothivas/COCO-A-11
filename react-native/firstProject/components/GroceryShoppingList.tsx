@@ -20,7 +20,10 @@ const GroceryShoppingList = () => {
         onChangeText={setNewItem}
       />
       <Button title="Add the item to list" onPress={addItem} />
-      <FlatList testID='flatlist' data={groceryItems} renderItem={({ item }) => <Text style={styles.item}>{item}</Text>} />
+      <FlatList testID='flatlist'
+        data={groceryItems}
+        renderItem={({ item }) =>
+          <Text style={styles.item}>{item}</Text>} />
     </View>
 
   );
