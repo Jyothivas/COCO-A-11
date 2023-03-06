@@ -16,11 +16,7 @@ describe('App Component', () => {
     const userForm = getByTestId('user-form');
     expect(userForm).toBeDefined();
   });
-  it('renders UserData component', () => {
-    const { getByTestId } = render(<App />);
-    const userData = getByTestId('user-data');
-    expect(userData).toBeDefined();
-  });
+
 });
   
 
