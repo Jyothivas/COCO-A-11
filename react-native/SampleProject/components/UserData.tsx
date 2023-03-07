@@ -1,71 +1,65 @@
-import React, { useState } from "react";
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-type ParentProps={
+type ParentProps = {
     onUserData: any
 }
 
-interface User {
-    name: string,
-    email: string
-}
 const UserData = (props:ParentProps) => {
-    const [users, setUsers] = useState<User[]>([])
-    const userData = [
-        { name: 'karan', email: 'karan@gmail.com' },
-        { name: 'peter', email: 'peter@gmail.com' },
-        { name: 'sam', email: 'sam@gmail.com' },
-        { name: 'rahul', email: 'rahul@gmail.com' },
-        { name: 'rohit', email: 'rohit@gmail.com' },
-    ]
+    const navigation=useNavigation()
+
+    const goto=()=>{
+        navigation.navigate('User Form',{});
+    }
+
     return (
-        <ScrollView>
             <View >
+                <Button title="Create New User" onPress={goto} />
                 <View testID='theading' style={style.tableHeader}>
                     <View style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 18, color: 'black', alignSelf: 'center' }}>Sr.No</Text>
+                        <Text style={style.rowData}>Sr.No</Text>
                     </View>
                     <View style={{ flex: 2 }}>
-                        <Text style={{ fontSize: 18, color: 'black', alignSelf: 'center' }}>Name</Text>
+                        <Text style={style.rowData}>Name</Text>
                     </View>
                     <View style={{ flex: 3 }}>
-                        <Text style={{ fontSize: 18, color: 'black', alignSelf: 'center' }}>Email</Text>
+                        <Text style={style.rowData}>Email</Text>
                     </View>
                 </View>
 
-                <FlatList testID='flatlist'
+                 <FlatList testID='flatlist'
                     data={props.onUserData}
                     renderItem={({ item, index }) =>
-                        <View style={{ flex: 1, flexDirection: 'row', marginTop: 50 }}>
+                        <View style={style.table}>
                             <View style={{ flex: 1 }}>
-                                <Text style={{ fontSize: 18, color: 'black', alignSelf: 'center' }}>{index + 1}</Text>
+                                <Text style={style.rowData}>{index + 1}</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={{ fontSize: 18, color: 'black', alignSelf: 'center' }}>{item.name}</Text>
+                                <Text style={style.rowData}>{item.name}</Text>
                             </View>
                             <View style={{ flex: 3 }}>
-                                <Text style={{ fontSize: 18, color: 'black', alignSelf: 'center' }}>{item.email}</Text>
+                                <Text style={style.rowData}>{item.email}</Text>
                             </View>
                         </View>
-                    } />
+                    } /> 
             </View>
-        </ScrollView>
     );
 }
 
 const style = StyleSheet.create({
 
-    table: {
-        top: 50,
-        flex: 1,
-        padding: 10,
-        flexDirection: 'row'
-    },
     rowData: {
-        fontSize: 15,
-        flex: 1,
-        justifyContent: 'center',
+        fontSize: 18,
+        color: 'black',
         alignSelf: 'center'
+    },
+    table: {
+        flex: 1,
+        flexDirection: 'row',
+        marginTop: 20,
+        padding: 5,
+        borderBottomWidth:1
     },
     tableHeader: {
         fontSize: 20,

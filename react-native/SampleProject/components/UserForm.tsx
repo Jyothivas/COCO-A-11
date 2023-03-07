@@ -17,9 +17,9 @@ const UserForm = (props: ChildProps) => {
 
     const addingUser = () => {
         setUser([...Users, { name, email }]);
+        props.onAddUser(name, email);
         setName('');
         setEmail('');
-        props.onAddUser(name, email);
     }
     return (
         <>
@@ -50,9 +50,7 @@ const UserForm = (props: ChildProps) => {
 const style = StyleSheet.create({
     container: {
         flex: 1,
-        position: 'relative',
-        top: 50,
-        marginBottom: 55,
+        top: 20,
         padding: 25,
         borderColor: 'grey',
         borderWidth: 1,
@@ -65,16 +63,14 @@ const style = StyleSheet.create({
     input: {
         borderColor: 'gray',
         borderBottomWidth: 2,
-        marginBottom: 8,
+        marginVertical:10,
         padding: 5,
+        fontSize:20,
     },
     btn: {
         top: 20,
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        paddingVertical: 8,
-        flex: 1
     },
 })
 
