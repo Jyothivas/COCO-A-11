@@ -1,0 +1,24 @@
+
+<!-- <h4>EmailId:-{{user.email}}</h4>
+<h5>Age:-{{user.age}}</h5>
+<p>Gender:-{{user.gender}}</p>
+<button class="btn btn-danger btn-sm" (click)="deleteData(user.id)">Delete</button> -->
+
+<h2>Users Details</h2>
+ <div class="row table">
+        
+        <div class="col-4"><strong>Email</strong></div>
+        <div class="col-1"><strong>Age</strong></div>
+        <div class="col-2"><strong>Gender</strong></div> 
+        <div class="col-2"><strong>Action</strong></div>
+       
+    </div>
+    <div class="row table" *ngFor="let users of user">
+        
+        <div class="col-4">{{users.email}}</div> 
+        <div class="col-1">{{users.age}}</div>
+        <div class="col-2">{{users.gender}}</div>
+        <div class="col-2">
+            <button class="btn btn-danger btn-sm" (click)="deleteData(users.id)">Delete</button>
+        </div>
+    </div>

@@ -1,0 +1,8 @@
+<div class="container">    
+    <h2>Main Componant</h2>
+    <app-add-user (userAdd)="addData($event)"></app-add-user>
+    <div>
+        <app-show-user [user]="userData" (userDelete)="deleteData($event)" (userUpdate)="updateData($event)"></app-show-user>
+    </div>
+    
+</div>
