@@ -1,19 +1,44 @@
 import React from "react";
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import renderer from 'react-test-renderer';
 import UserData from "../components/UserData";
 
 describe('UserData Component', () => {
+
+    const users = [
+        { name: 'Alice', email: 'alice@example.com' },
+    ];
+
+    const gotoFormScreen = jest.fn();
+    const props = { onUserData: users, onAddUser: gotoFormScreen };
+
     it('UserData component is defined', () => {
         expect(UserData).toBeDefined();
     });
+
     it('renders correctly', () => {
-        renderer.create(<UserData />)
+        renderer.create(<UserData {...props} />)
     });
-    it('UserData component render correctly',()=>{
-        const { getByTestId,getByText}=render(<UserData/>);
-        const userData = getByTestId('user-data');
+
+
+    it('UserData component render correctly', () => {
+        const { getByTestId, getByText } = render(<UserData {...props} />);
+        
+        const userData = getByTestId('table');
         expect(userData).toBeDefined();
+
+        const navigateFormScreenButton = getByText('Create New User');
+        expect(navigateFormScreenButton).toBeDefined();
+
     });
+
+    it('should navigate to the user form screen when the "Create New User" button is pressed', () => {
+        const { getByText } = render(<UserData {...props} />);
+        const createNewUserButton = getByText('Create New User');
+    
+        fireEvent.press(createNewUserButton);
+    
+          expect(gotoFormScreen).toHaveBeenCalled();
+        });
 
 });

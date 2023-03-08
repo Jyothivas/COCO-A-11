@@ -3,15 +3,18 @@ import { fireEvent, render } from '@testing-library/react-native';
 import UserForm from "../components/UserForm";
 import renderer from 'react-test-renderer';
 
+
 describe('UserForm Component', () => {
+    const handleAddUser = jest.fn();
+
     it('UserForm component is defined', () => {
         expect(UserForm).toBeDefined();
     })
     it('renders correctly', () => {
-        renderer.create(<UserForm />);
+        renderer.create(<UserForm onAddUser={handleAddUser} />);
     });
     it('UserForm component renders correctly', () => {
-        const { getByTestId, getByText, getByPlaceholderText } = render(<UserForm />)
+        const { getByTestId, getByText, getByPlaceholderText } = render(<UserForm onAddUser={handleAddUser} />)
 
         const component = getByTestId('user-form');
         expect(component).toBeDefined();
@@ -34,25 +37,22 @@ describe('UserForm Component', () => {
         const cancelButton = getByText('Cancel');
         expect(cancelButton).toBeDefined();
 
-        const tableHead = getByTestId('theading');
-        expect(tableHead).toBeDefined();
     });
 
-    it('adds items to the list', () => {
-        const { getByPlaceholderText, getByText, getByTestId } = render(<UserForm />);
-        
+    it('should add a user when the Add button is pressed', () => {
+
+        const { getByPlaceholderText, getByText } = render(<UserForm onAddUser={handleAddUser} />);
+
         const nameInput = getByPlaceholderText('Enter your name');
         const emailInput = getByPlaceholderText('Enter your email');
         const addButton = getByText('Add');
-        const flatList = getByTestId('flatlist');
-    
-        fireEvent.changeText(nameInput, 'sam');
-        fireEvent.changeText(emailInput, 'sam@gmail.com');
+
+        fireEvent.changeText(nameInput, 'John');
+        fireEvent.changeText(emailInput, 'john@example.com');
         fireEvent.press(addButton);
-    
-        expect(getByText('sam')).toBeDefined();
-        expect(getByText('sam@gmail.com')).toBeDefined();
-        expect(flatList.props.data[0].name).toContain('sam');
-        expect(flatList.props.data[0].email).toContain('sam@gmail.com');
-      });
+
+        expect(handleAddUser).toHaveBeenCalledWith('John', 'john@example.com')
+
+    });
+
 })
