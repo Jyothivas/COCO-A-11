@@ -1,21 +1,17 @@
 import React from "react";
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+
 
 type ParentProps = {
     onUserData: any,
+    navigation:any
 }
 
 const UserData = (props: ParentProps) => {
 
-    const navigation = useNavigation();
-    const gotoFormScreen = () => {
-        navigation.navigate('User Form');
-    }
-
     return (
         <View testID="table">
-            <Button title="Create New User" onPress={gotoFormScreen} />
+            <Button title="Create New User" onPress={()=>props.navigation.navigate('User Form')} />
             <View testID='headingRow' style={style.tableHeader}>
                 <View style={{ flex: 1 }}>
                     <Text style={style.rowData}>Sr.No</Text>

@@ -11,10 +11,10 @@ describe('UserForm Component', () => {
         expect(UserForm).toBeDefined();
     })
     it('renders correctly', () => {
-        renderer.create(<UserForm onAddUser={handleAddUser} />);
+        renderer.create(<UserForm onAddUser={handleAddUser} navigation={undefined} />);
     });
     it('UserForm component renders correctly', () => {
-        const { getByTestId, getByText, getByPlaceholderText } = render(<UserForm onAddUser={handleAddUser} />)
+        const { getByTestId, getByText, getByPlaceholderText } = render(<UserForm onAddUser={handleAddUser} navigation={undefined} />)
 
         const component = getByTestId('user-form');
         expect(component).toBeDefined();
@@ -41,7 +41,10 @@ describe('UserForm Component', () => {
 
     it('should add a user when the Add button is pressed', () => {
 
-        const { getByPlaceholderText, getByText } = render(<UserForm onAddUser={handleAddUser} />);
+        const navigation ={navigate:()=>{}}
+        jest.spyOn(navigation,'navigate')
+
+        const { getByPlaceholderText, getByText } = render(<UserForm navigation={navigation} onAddUser={handleAddUser}  />);
 
         const nameInput = getByPlaceholderText('Enter your name');
         const emailInput = getByPlaceholderText('Enter your email');
@@ -52,6 +55,26 @@ describe('UserForm Component', () => {
         fireEvent.press(addButton);
 
         expect(handleAddUser).toHaveBeenCalledWith('John', 'john@example.com')
+        expect(navigation.navigate).toBeCalledWith('User Data')
+
+    });
+
+    it('should navigate to User Data screen a user when the Add button is pressed', () => {
+
+        const navigation ={navigate:()=>{}}
+        jest.spyOn(navigation,'navigate')
+
+        const { getByPlaceholderText, getByText } = render(<UserForm navigation={navigation} onAddUser={handleAddUser}  />);
+
+        const nameInput = getByPlaceholderText('Enter your name');
+        const emailInput = getByPlaceholderText('Enter your email');
+        const addButton = getByText('Add');
+
+        fireEvent.changeText(nameInput, 'John');
+        fireEvent.changeText(emailInput, 'john@example.com');
+        fireEvent.press(addButton);
+
+        expect(navigation.navigate).toBeCalledWith('User Data')
 
     });
 

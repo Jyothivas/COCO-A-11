@@ -17,7 +17,7 @@ describe('App', () => {
       <NavigationContainer>
         <Stack.Navigator>
         <Stack.Screen name="User Data">
-          {() => <UserData onUserData={Users} />}
+          {(props) => <UserData {...props} onUserData={Users} />}
         </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

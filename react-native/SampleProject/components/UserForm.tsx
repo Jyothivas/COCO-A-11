@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 interface ChildProps {
+    navigation:any;
     onAddUser: (name: string, email: string) => void;
 }
 
@@ -13,6 +14,7 @@ const UserForm = (props: ChildProps) => {
         if (!name || !email) {
             return
         }
+        props.navigation.navigate('User Data')
         props.onAddUser(name, email);
         setName('');
         setEmail('');
@@ -34,7 +36,7 @@ const UserForm = (props: ChildProps) => {
                 value={email}
             />
             <View style={style.btn}>
-                <Button color={'grey'} title='Cancel' />
+                <Button color={'grey'} title='Cancel' onPress={()=>props.navigation.goBack()}/>
                 <Button title='Add' onPress={addingUser} />
             </View>
         </View>

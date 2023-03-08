@@ -9,8 +9,11 @@ describe('UserData Component', () => {
         { name: 'Alice', email: 'alice@example.com' },
     ];
 
+    const navigation ={navigate:()=>{}}
+        jest.spyOn(navigation,'navigate')
+
     const gotoFormScreen = jest.fn();
-    const props = { onUserData: users, onAddUser: gotoFormScreen };
+    const props = { onUserData: users, navigation:navigation };
 
     it('UserData component is defined', () => {
         expect(UserData).toBeDefined();
@@ -33,12 +36,13 @@ describe('UserData Component', () => {
     });
 
     it('should navigate to the user form screen when the "Create New User" button is pressed', () => {
-        const { getByText } = render(<UserData {...props} />);
+        
+        const { getByText } = render(<UserData  {...props} />);
         const createNewUserButton = getByText('Create New User');
     
         fireEvent.press(createNewUserButton);
     
-          expect(gotoFormScreen).toHaveBeenCalled();
+        expect(navigation.navigate).toHaveBeenCalledWith('User Form');
         });
 
 });

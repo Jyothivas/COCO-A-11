@@ -26,7 +26,7 @@ const App = () => {
           {(props) => <UserData {...props} onUserData={Users} />}
         </Stack.Screen>
         <Stack.Screen name="User Form">
-          {() => <UserForm onAddUser={handleAddUser} />}
+          {(props) => <UserForm {...props} onAddUser={handleAddUser} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
