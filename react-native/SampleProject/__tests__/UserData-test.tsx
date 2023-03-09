@@ -12,8 +12,8 @@ describe('UserData Component', () => {
     const navigation ={navigate:()=>{}}
         jest.spyOn(navigation,'navigate')
 
-    const gotoFormScreen = jest.fn();
-    const props = { onUserData: users, navigation:navigation };
+    
+    const props = { UserData: users, navigation:navigation };
 
     it('UserData component is defined', () => {
         expect(UserData).toBeDefined();

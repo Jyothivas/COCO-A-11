@@ -3,7 +3,7 @@ import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 
 
 type ParentProps = {
-    onUserData: any,
+    UserData: any,
     navigation:any
 }
 
@@ -25,7 +25,7 @@ const UserData = (props: ParentProps) => {
             </View>
 
             <FlatList testID='flatlist'
-                data={props.onUserData}
+                data={props.UserData}
                 renderItem={({ item, index }) =>
                     <View style={style.table}>
                         <View style={{ flex: 1 }}>

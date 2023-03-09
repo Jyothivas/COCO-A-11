@@ -11,10 +11,10 @@ describe('UserForm Component', () => {
         expect(UserForm).toBeDefined();
     })
     it('renders correctly', () => {
-        renderer.create(<UserForm onAddUser={handleAddUser} navigation={undefined} />);
+        renderer.create(<UserForm onAddUser={handleAddUser} navigation={null} />);
     });
     it('UserForm component renders correctly', () => {
-        const { getByTestId, getByText, getByPlaceholderText } = render(<UserForm onAddUser={handleAddUser} navigation={undefined} />)
+        const { getByTestId, getByText, getByPlaceholderText } = render(<UserForm onAddUser={handleAddUser} navigation={null} />)
 
         const component = getByTestId('user-form');
         expect(component).toBeDefined();
@@ -60,7 +60,7 @@ describe('UserForm Component', () => {
     });
 
     it('should navigate to User Data screen a user when the Add button is pressed', () => {
-
+        
         const navigation ={navigate:()=>{}}
         jest.spyOn(navigation,'navigate')
 
@@ -78,4 +78,26 @@ describe('UserForm Component', () => {
 
     });
 
+    
+
 })
+
+it('should pass empty field and press button', () => {
+
+    const navigation ={navigate:()=>{}}
+    jest.spyOn(navigation,'navigate')
+    const handleAddUser = jest.fn();
+
+    const { getByPlaceholderText, getByText } = render(<UserForm navigation={navigation} onAddUser={handleAddUser}  />);
+
+    const nameInput = getByPlaceholderText('Enter your name');
+    const emailInput = getByPlaceholderText('Enter your email');
+    const addButton = getByText('Add');
+
+    fireEvent.changeText(nameInput,'');
+    fireEvent.changeText(emailInput,'');
+    fireEvent.press(addButton);
+
+    expect(handleAddUser).not.toBeCalled()
+
+});
