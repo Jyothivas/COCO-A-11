@@ -25,7 +25,7 @@ describe('UserForm Component', () => {
         const nameInput = getByPlaceholderText('Enter your name');
         expect(nameInput).toBeDefined();
 
-        const emailText = getByTestId('name-test');
+        const emailText = getByTestId('email-test');
         expect(emailText).toBeDefined();
 
         const emailInput = getByPlaceholderText('Enter your email');
