@@ -1,26 +1,29 @@
 import 'react-native';
 import React from 'react';
-
-
-import { render, fireEvent } from '@testing-library/react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import App from '../App';
-import UserData from '../components/UserData';
 
-const Stack = createNativeStackNavigator();
+// https://callstack.github.io/react-native-testing-library/docs/react-navigation
+
+
+
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
+
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useNavigation: () => {
+    return jest.fn();
+  },
+}));
 
 describe('App', () => {
-  it('should add a new user when handleAddUser is called', () => {
+  it('should render App component', async () => {
     const Users =[{name:'karan',email:'karan@gmail.com'}]
-    const { getByTestId } = render(
-      <NavigationContainer>
-        <Stack.Navigator>
-        <Stack.Screen name="User Data">
-          {(props) => <UserData {...props} onUserData={Users} />}
-        </Stack.Screen>
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-    }); 
-  });
+    const { getByTestId} = render(<App />);
+
+    await waitFor(() => getByTestId('table'));
+
+  }); 
+
+});
