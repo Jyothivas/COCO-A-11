@@ -3,6 +3,7 @@ import UserData from './components/UserData';
 import UserForm from './components/UserForm';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Button } from 'react-native'
 
 interface User {
   name: string,
@@ -22,10 +23,27 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="User Data">
-          {(props) => <UserData {...props} UserData={Users} />}
+        <Stack.Screen
+          name='User Data'
+          options={({ navigation }) => ({
+            title: 'User Data',
+            headerRight: () => (
+              <Button
+                onPress={() =>
+                  navigation.navigate('User Form')}
+                title="New User"
+              />
+            ),
+          })}
+        >
+          {() => <UserData UserData={Users} />}
         </Stack.Screen>
-        <Stack.Screen name="User Form">
+
+        <Stack.Screen
+          name='User Form'
+          options={{
+            title: 'User Form',
+          }}>
           {(props) => <UserForm {...props} onAddUser={handleAddUser} />}
         </Stack.Screen>
       </Stack.Navigator>

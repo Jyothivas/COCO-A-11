@@ -1,17 +1,14 @@
 import React from "react";
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
-
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 type ParentProps = {
     UserData: any,
-    navigation:any
 }
 
 const UserData = (props: ParentProps) => {
 
     return (
         <View testID="table">
-            <Button title="Create New User" onPress={()=>props.navigation.navigate('User Form')} />
             <View testID='headingRow' style={style.tableHeader}>
                 <View style={{ flex: 1 }}>
                     <Text style={style.rowData}>Sr.No</Text>

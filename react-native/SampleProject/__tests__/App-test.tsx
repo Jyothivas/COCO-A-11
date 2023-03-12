@@ -9,6 +9,9 @@ import App from '../App';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
+const navigation ={navigate:()=>{}}
+        jest.spyOn(navigation,'navigate')
+
 
 jest.mock('@react-navigation/native', () => ({
   ...jest.requireActual('@react-navigation/native'),
@@ -25,5 +28,23 @@ describe('App', () => {
     await waitFor(() => getByTestId('table'));
 
   }); 
+
+  it('UserData component render correctly', () => {
+    const { getByText } = render(<App />);
+
+    const navigateFormScreenButton = getByText('New User');
+    expect(navigateFormScreenButton).toBeDefined();
+
+});
+
+  it('should navigate to the user form screen when the "Create New User" button is pressed', () => {
+        
+    const { getByText } = render(<App />);
+    const createNewUserButton = getByText('Create New User');
+
+    fireEvent.press(createNewUserButton);
+
+    expect(navigation.navigate).toHaveBeenCalledWith('User Form');
+    });
 
 });
