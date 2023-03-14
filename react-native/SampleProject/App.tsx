@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import UserData from './components/UserData';
+import UserList from './components/UserList';
 import UserForm from './components/UserForm';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigationContainerRef  } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Button } from 'react-native'
 
@@ -13,20 +13,27 @@ interface User {
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-
+  
   const [Users, setUser] = useState<User[]>([]);
+
+  const navigationRef = useNavigationContainerRef(); // You can also use a regular ref with `React.useRef()`
 
   const handleAddUser = (name: string, email: string) => {
     setUser([...Users, { name, email }]);
+    goToListView();
   };
 
+  const goToListView = () => {
+      navigationRef.navigate('User List');
+  }
+
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator>
         <Stack.Screen
-          name='User Data'
+          name='User List'
           options={({ navigation }) => ({
-            title: 'User Data',
+            title: 'User List',
             headerRight: () => (
               <Button
                 onPress={() =>
@@ -36,7 +43,7 @@ const App = () => {
             ),
           })}
         >
-          {() => <UserData UserData={Users} />}
+          {() => <UserList UserList={Users}/>}
         </Stack.Screen>
 
         <Stack.Screen
@@ -44,7 +51,7 @@ const App = () => {
           options={{
             title: 'User Form',
           }}>
-          {(props) => <UserForm {...props} onAddUser={handleAddUser} />}
+          {() => <UserForm onAddUser={handleAddUser} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

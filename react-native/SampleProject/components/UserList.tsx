@@ -2,10 +2,10 @@ import React from "react";
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 type ParentProps = {
-    UserData: any,
+    UserList?: any,
 }
 
-const UserData = (props: ParentProps) => {
+const UserList = (props: ParentProps) => {
 
     return (
         <View testID="table">
@@ -22,7 +22,7 @@ const UserData = (props: ParentProps) => {
             </View>
 
             <FlatList testID='flatlist'
-                data={props.UserData}
+                data={props.UserList}
                 renderItem={({ item, index }) =>
                     <View style={style.table}>
                         <View style={{ flex: 1 }}>
@@ -66,4 +66,4 @@ const style = StyleSheet.create({
     },
 })
 
-export default UserData;
+export default UserList;
