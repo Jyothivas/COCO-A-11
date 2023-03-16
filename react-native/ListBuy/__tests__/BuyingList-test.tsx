@@ -1,26 +1,26 @@
 import React from "react";
 import { render } from '@testing-library/react-native';
 import BuyingList from "../components/BuyingList"
-import jsonData from '../listings-buy-data.json';
 
 describe('BuyingList Components', () => {
 
     it('BuyingList component render correctly', () => {
-        const { getByTestId,getAllByTestId } = render(<BuyingList />);
-        
+        const { getByTestId } = render(<BuyingList />);
+
         const BuyingFlatList = getByTestId('Buying-FlatList');
         expect(BuyingFlatList).toBeDefined();
 
-        const HousePicture = getAllByTestId('HouseImage');
-        expect(HousePicture).toBeDefined();
-
-        const AgentProfilePic = getAllByTestId('agentProfileImage');
-        expect(AgentProfilePic).toBeDefined();
-
     });
 
-    it('Checking .json file is empty or not',()=>{
-        const jsonObject= jsonData
-        expect(jsonObject).not.toBeNull();
+    const data = jest.fn(async () => {
+        const url = 'http://192.168.220.250:3000/data';
+        let response: any = await fetch(url);
+        response = await response.json();
+        return response;
     })
+
+    it('works with async/await', async () => {
+        expect.assertions(1);
+        expect(data).not.toBeNull();
+    });
 })

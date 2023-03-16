@@ -15,9 +15,6 @@ const BuyingList = () => {
         getJsonData();
     }, [])
 
-    if (!jsonObject) {
-        return (<Text style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>Loading...</Text>)
-    }
 
     return (
         <View style={{ flex: 1, flexDirection: 'row' }}>
