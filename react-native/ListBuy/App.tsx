@@ -9,7 +9,7 @@ function App() {
 
   return (
     <View style={{ flex: 1 }}>
-      <HouseImages />
+    <BuyingList />
     </View>
   )
 }

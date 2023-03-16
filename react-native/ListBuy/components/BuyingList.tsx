@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, StyleSheet, View } from 'react-native';
-import jsonData from '../listings-buy-data.json';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 
 const BuyingList = () => {
 
-    const [jsonObject, setJsonObject] = useState()
-
-    const getJsonData = () => {
-        setJsonObject(jsonData.data.listings.data)
+    const [jsonObject, setJsonObject] = useState();
+    const getJsonData = async () => {
+        const url = 'http://192.168.220.250:3000/data';
+        let response: any = await fetch(url);
+        response = await response.json();
+        setJsonObject(response.listings.data);
     }
 
     useEffect(() => {
         getJsonData();
     }, [])
+
+    if (!jsonObject) {
+        return (<Text style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>Loading...</Text>)
+    }
 
     return (
         <View style={{ flex: 1, flexDirection: 'row' }}>
