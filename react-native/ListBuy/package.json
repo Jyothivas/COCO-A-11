@@ -12,7 +12,8 @@
   "dependencies": {
     "@testing-library/react-native": "^11.5.4",
     "react": "18.2.0",
-    "react-native": "0.71.4"
+    "react-native": "0.71.4",
+    "react-native-image-slider-box": "^2.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -1,14 +1,9 @@
 import React from "react";
 import { render } from '@testing-library/react-native';
-import renderer from 'react-test-renderer';
 import BuyingList from "../components/BuyingList"
 import jsonData from '../listings-buy-data.json';
 
 describe('BuyingList Components', () => {
-
-    it('renders correctly', () => {
-        renderer.create(<BuyingList/>)
-    });
 
     it('BuyingList component render correctly', () => {
         const { getByTestId,getAllByTestId } = render(<BuyingList />);

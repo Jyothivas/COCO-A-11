@@ -16,41 +16,38 @@ const BuyingList = () => {
 
     return (
         <View style={{ flex: 1, flexDirection: 'row' }}>
-            <FlatList testID='Buying-FlatList'
-                data={jsonObject }
-                renderItem={({ item  }) => {
+            <FlatList
+                testID='Buying-FlatList'
+                data={jsonObject}
+                renderItem={({ item }) => {
                     return (
                         <View style={style.houseView}>
-                            <Image testID='HouseImage'
+                            <Image
+                                testID='HouseImage'
                                 style={style.houseImage}
                                 source={{
-                                    uri: 'https://cdn.uatr.view.com.au/images/listing/slug/800-min/' + item.heroImageUrl.split("/")[2]
+                                    uri: 'https://cdn.uatr.view.com.au/images/listing/slug/800-min/' + item.heroImageUrl.split('/')[2]
                                 }}
                             />
 
                             {
                                 item.agents.map((agentItem: any, index: number) => {
                                     return (
-
-                                        <Image testID='agentProfileImage'
+                                        <Image
+                                            testID='agentProfileImage'
                                             key={'agentPhotoImage' + index}
                                             style={{ height: 150, width: '100%', margin: 3 }}
                                             source={{
                                                 uri: 'https://cdn.uatr.view.com.au/images/listing/55-w/' + agentItem.agentPhotoFileName
                                             }}
                                         />
-
                                     )
-                                }
-                                )
+                                })
                             }
-
                         </View>
                     )
-                }
-                }
-                keyExtractor={(item, index) => index.toString()
-                }
+                }}
+                keyExtractor={(item, index) => index.toString()}
             />
         </View>
     )

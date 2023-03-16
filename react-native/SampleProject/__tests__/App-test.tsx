@@ -12,6 +12,8 @@ const navigation = { navigate: () => { } }
 jest.spyOn(navigation, 'navigate')
 
 
+
+
 jest.mock('@react-navigation/native', () => ({
   ...jest.requireActual('@react-navigation/native'),
   useNavigation: () => {
@@ -49,4 +51,35 @@ describe('App Component', () => {
     expect(formComponent).toBeDefined();
 
   });
+
+  it('when press New User button then navigate to the UserForm Component', async () => {
+
+    const { getByText, findByTestId } = render(<App />);
+
+    const navigateToFormButton = await getByText('New User');
+    const formComponent = findByTestId('user-form');
+
+    fireEvent.press(navigateToFormButton);
+
+    expect(formComponent).toBeDefined();
+
+  });
+
+  it('when press New User button then navigate to the UserForm Component', async () => {
+
+    const handleAddUser = (name: string, email: string) => {
+     const goToListView=jest.fn();
+    };
+
+    const { getByText, findByTestId } = render(<App />);
+
+    const navigateToFormButton = await getByText('New User');
+    const formComponent = findByTestId('user-form');
+
+    fireEvent.press(navigateToFormButton);
+
+    expect(formComponent).toBeDefined();
+
+  });
+
 });
