@@ -1,76 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import { Dimensions, FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react'
+import { Dimensions, Image, ScrollView, View, StyleSheet } from 'react-native';
 
-const HouseImages = () => {
+type houseImagesProp = {
+    route: any
+}
+const HouseImages = (props: houseImagesProp) => {
 
-    const [jsonObject, setJsonObject] = useState();
-    
-    const getJsonData = async() => {
-        const url='http://192.168.220.250:3000/data';
-        let response:any = await fetch(url);
-        response = await response.json();
-        setJsonObject(response.listings.data)
-    }
-
-    useEffect(() => {
-        getJsonData();
-    }, [])
     const { height, width } = Dimensions.get('window');
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View>
-                <FlatList
-                    data={jsonObject}
-                    renderItem={({ item }) => {
+        <View style={style.images}>
+            <ScrollView
+            testID='sliderImages'
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}>
+                {
+                    props.route.params?.images.map((houseimg: any, index: number) => {
                         return (
-                            <View style={{ flex:1,flexDirection:'row'}}>
-                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                                {
-                                    item.images.map((houseimg: any, index: number) => {
-                                        return (
-                                            <View style={{ width: width, height: height / 2, justifyContent: 'center', alignItems: 'center'  }}
-                                                key={'HouseImage' + index} >
-                                                <Image
-                                                    style={{ width:"90%",height:'90%'}}
-                                                    source={{
-                                                        uri: 'https://cdn.uatr.view.com.au/images/listing/slug/800-min/' + houseimg.url.split("/")[2]
-                                                    }}
-                                                />
-                                                
-                                            </View>
-                                        );
-                                    })
-                                }
-                                </ScrollView>
+                            <View
+                                style={{ width: width, height: height / 2, justifyContent: 'center', alignItems: 'center' }}
+                                key={'HouseImage' + index} >
+                                <Image
+                                    style={{ width: "95%", height: '100%' }}
+                                    source={{
+                                        uri: 'https://cdn.uatr.view.com.au/images/listing/slug/800-min/' + houseimg.url.split("/")[2]
+                                    }}
+                                />
                             </View>
-
-                        )
-                    }
-                    }
-                    keyExtractor={(item, index) => index.toString()}
-                />
-            </View>
+                        );
+                    })
+                }
+            </ScrollView>
         </View>
     )
 }
+const style = StyleSheet.create({
+    images: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'black'
+    }
+})
 
 export default HouseImages;
 
-
-// {
-//     item.images.map((houseimg: any, index: number) => {
-//         return (
-//             <View style={{width:'100%'}}
-//                 key={'HouseImage' +index}>
-//                     <Text>Image</Text>
-//                 <Image
-//                     style={{ height: 150, width: '50%', marginTop: 5 }}
-//                     source={{
-//                         uri: 'https://cdn.uatr.view.com.au/images/listing/slug/800-min/' + houseimg.url.split("/")[2]
-//                     }}
-//                 />
-//             </View>
-//         );
-//     })
-// }

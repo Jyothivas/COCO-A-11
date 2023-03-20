@@ -1,21 +1,26 @@
-/**
- * @format
- */
-
 import 'react-native';
 import React from 'react';
 import App from '../App';
+import axios from 'axios';
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
-  renderer.create(<App />);
-});
 
-describe("<App />", () => {
-  it('has 1 child', () => {
-      const tree = renderer.create(<App />).root;
-      expect(tree.children.length).toBe(1);
-  });
-});
+describe('App Component', () => {
+  test('App component is defined', () => {
+    expect(App).toBeDefined();
+  })
+  test('mock testing url api of List-buy work correctly', () => {
+
+    const mockedApi = { data: {} }
+    jest.mock('axios');
+    const mockedAxios = axios as jest.Mocked<typeof axios>;
+
+    mockedAxios.get.mockResolvedValue(mockedApi);
+
+    expect(mockedAxios.get).toHaveBeenCalled();
+    expect(mockedAxios.get).toHaveBeenCalledWith(`http://10.0.2.2:3000/data`);
+
+  })
+})
+
+

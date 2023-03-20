@@ -13,7 +13,7 @@ describe('BuyingList Components', () => {
     });
 
     const data = jest.fn(async () => {
-        const url = 'http://192.168.220.250:3000/data';
+        const url = 'http://10.0.2.2:3000/data';
         let response: any = await fetch(url);
         response = await response.json();
         return response;
@@ -23,4 +23,6 @@ describe('BuyingList Components', () => {
         expect.assertions(1);
         expect(data).not.toBeNull();
     });
+
+
 })

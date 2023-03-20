@@ -4,17 +4,18 @@ import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 const BuyingList = () => {
 
     const [jsonObject, setJsonObject] = useState();
+    
+    useEffect(() => {
+        getJsonData();
+    }, [])
+    
     const getJsonData = async () => {
-        const url = 'http://192.168.220.250:3000/data';
+
+        const url = 'http://10.0.2.2:3000/data';
         let response: any = await fetch(url);
         response = await response.json();
         setJsonObject(response.listings.data);
     }
-
-    useEffect(() => {
-        getJsonData();
-    }, [])
-
 
     return (
         <View style={{ flex: 1, flexDirection: 'row' }}>

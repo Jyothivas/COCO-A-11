@@ -15,9 +15,14 @@ describe('HouseImages Component', () => {
     })
 
     test('HouseImage components renders correctly', () => {
-        const { getByTestId } = render(<HouseImages />);
+        const images = [
+            { url: 'https://www.example.com/image1.jpg' },
+            { url: 'https://www.example.com/image2.jpg' },
+            { url: 'https://www.example.com/image3.jpg' },
+          ];
+        const { getByTestId } = render(<HouseImages route={images} />);
 
-        const HouseImageView = getByTestId('houseImageView')
-        expect(HouseImageView).toBeDefined();
+        const sliderImages = getByTestId('sliderImages')
+        expect(sliderImages).toBeDefined();
     })
 })

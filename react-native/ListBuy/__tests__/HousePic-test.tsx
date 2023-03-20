@@ -15,12 +15,13 @@ describe('HousePic Components', () => {
     })
 
     test('HousePic components renders correctly', () => {
-        const { getByTestId } = render(<HousePic />);
+        
+        const { getByTestId } = render(<HousePic HousePicData={undefined} navigation={undefined} />);
 
         const housePicView = getByTestId('HousePicView');
         expect(housePicView).toBeDefined();
         
-        const houseImageFlatlist = getByTestId('HouseImageFlatList');
+        const houseImageFlatlist = getByTestId('HouseImage');
         expect(houseImageFlatlist).toBeDefined();
 
     })
