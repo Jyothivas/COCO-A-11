@@ -2,7 +2,7 @@ import React from 'react'
 import { Dimensions, Image, ScrollView, View, StyleSheet } from 'react-native';
 
 type houseImagesProp = {
-    route: any
+    houseImage:any
 }
 const HouseImages = (props: houseImagesProp) => {
 
@@ -15,7 +15,7 @@ const HouseImages = (props: houseImagesProp) => {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}>
                 {
-                    props.route.params?.images.map((houseimg: any, index: number) => {
+                    props.houseImage.images.map((houseimg: any, index: number) => {
                         return (
                             <View
                                 style={{ width: width, height: height / 2, justifyContent: 'center', alignItems: 'center' }}

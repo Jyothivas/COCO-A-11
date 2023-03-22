@@ -6,9 +6,13 @@ import HousePic from "./HousePic";
 
 type houseCardProps = {
     HouseData: any
-    navigation: any
+    onHouseImages:any
 }
 const HouseCard = (props: houseCardProps) => {
+
+    const handleHouseImages=(images:[])=>{
+        props.onHouseImages(images)
+    }
 
     return (
         <View testID="housecard" style={{ flex: 1 }}>
@@ -20,7 +24,7 @@ const HouseCard = (props: houseCardProps) => {
                             <View style={{ flexDirection: 'row', width: '100%', }}>
                                 <HousePic
                                     HousePicData={item}
-                                    navigation={props.navigation}
+                                    onHouseImages={handleHouseImages}
                                 />
                                 <HouseDescription
                                     houseDesc={item}

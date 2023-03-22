@@ -3,10 +3,15 @@ import { Image, TouchableOpacity, View } from 'react-native';
 
 type HousePicProps = {
     HousePicData: any;
-    navigation: any
+    onHouseImages: (images: []) => void;
 }
 
 const HousePic = (props: HousePicProps) => {
+    
+    const gotoImages=()=>{
+        props.onHouseImages(props.HousePicData);
+    }
+    
     return (
         <View
             testID='HousePicView'
@@ -14,7 +19,7 @@ const HousePic = (props: HousePicProps) => {
             <View style={{ flex: 1 }}>
                 <TouchableOpacity
                     onPress={
-                        () => props.navigation.navigate('House Images', props.HousePicData)
+                        () => gotoImages()
                     }>
                     <Image
                         testID='HouseImage'
